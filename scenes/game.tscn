@@ -1,0 +1,134 @@
+[gd_scene load_steps=21 format=3 uid="uid://cpl1hoahnr1l2"]
+
+[ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
+[ext_resource type="Texture2D" uid="uid://bh4nhltg62ny" path="res://sprites/Grass.png" id="1_264po"]
+[ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
+[ext_resource type="Texture2D" uid="uid://5pcwo0feh3my" path="res://sprites/TermiCopter.png" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://b5oi7xhubi40g" path="res://scenes/tree.tscn" id="4_1kice"]
+[ext_resource type="Texture2D" uid="uid://be8ulrwfau4c1" path="res://sprites/TermiteW1.png" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://da8am2ym48b1p" path="res://sprites/TermiteW2.png" id="5_gee14"]
+[ext_resource type="Texture2D" uid="uid://q7cc0wa5khtf" path="res://sprites/TermiteW3.png" id="6_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://b3ir4fwhliear" path="res://sprites/Boot.png" id="7_vtaks"]
+[ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="8_vtaks"]
+[ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="9_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://cjv2fm5exnxk0" path="res://sprites/LaserReady.png" id="10_dinhu"]
+[ext_resource type="Texture2D" uid="uid://cq7inf7udh14j" path="res://sprites/FLIESMachine.png" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://dasuvqquyhfrf" path="res://sprites/FLY.png" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://bbovxhcvyylvl" path="res://sprites/HPBarOutline.png" id="13_trtic"]
+[ext_resource type="Texture2D" uid="uid://ml37apo8gdon" path="res://sprites/TreeS1.png" id="15_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://drcn1bvjp1gw3" path="res://sprites/TreeS2.png" id="16_264po"]
+[ext_resource type="Texture2D" uid="uid://buhoepjpe8dt3" path="res://sprites/TreeS3.png" id="17_1kice"]
+[ext_resource type="Texture2D" uid="uid://csvh56of0raqn" path="res://sprites/TreeS4.png" id="18_5newe"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1kice")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(2.11775e-06, 0.845876, 0.852649, 1)
+
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(578, 633)
+texture = ExtResource("1_264po")
+
+[node name="Cloud" type="Sprite2D" parent="."]
+position = Vector2(948, 147)
+texture = ExtResource("2_1kice")
+
+[node name="Cloud2" type="Sprite2D" parent="."]
+position = Vector2(273, 279)
+texture = ExtResource("2_1kice")
+
+[node name="Tree" parent="." instance=ExtResource("4_1kice")]
+position = Vector2(581, 618)
+
+[node name="TermiCopter" type="Sprite2D" parent="."]
+position = Vector2(198, 216)
+texture = ExtResource("2_lnu2h")
+
+[node name="Seed" type="Sprite2D" parent="."]
+position = Vector2(990, 213)
+texture = ExtResource("3_lbhrr")
+
+[node name="TermiteW1" type="Sprite2D" parent="."]
+position = Vector2(247, 423)
+texture = ExtResource("4_u5sy4")
+
+[node name="TermiteW2" type="Sprite2D" parent="."]
+position = Vector2(320, 424)
+texture = ExtResource("5_gee14")
+
+[node name="TermiteW3" type="Sprite2D" parent="."]
+position = Vector2(395, 423)
+texture = ExtResource("6_0tnpc")
+
+[node name="Boot" type="Sprite2D" parent="."]
+position = Vector2(876, 111)
+texture = ExtResource("7_vtaks")
+
+[node name="LaserBase" type="Sprite2D" parent="."]
+position = Vector2(205, 616)
+texture = ExtResource("8_vtaks")
+
+[node name="LaserCooldown" type="Sprite2D" parent="."]
+position = Vector2(200, 589)
+rotation = -1.00156
+texture = ExtResource("9_kvpfn")
+
+[node name="LaserReady" type="Sprite2D" parent="."]
+position = Vector2(82, 425)
+rotation = 2.22281
+texture = ExtResource("10_dinhu")
+
+[node name="LaserBase2" type="Sprite2D" parent="."]
+position = Vector2(51, 421)
+rotation = 1.56203
+texture = ExtResource("8_vtaks")
+
+[node name="FliesMachine" type="Sprite2D" parent="."]
+position = Vector2(415, 595)
+texture = ExtResource("11_kvpfn")
+
+[node name="Fly" type="Sprite2D" parent="."]
+position = Vector2(464, 540)
+texture = ExtResource("12_dinhu")
+
+[node name="Fly2" type="Sprite2D" parent="."]
+position = Vector2(415, 534)
+texture = ExtResource("12_dinhu")
+
+[node name="Fly3" type="Sprite2D" parent="."]
+position = Vector2(359, 538)
+texture = ExtResource("12_dinhu")
+
+[node name="HpBarOutline" type="Sprite2D" parent="."]
+position = Vector2(578, 54)
+texture = ExtResource("13_trtic")
+
+[node name="TreeS1" type="Sprite2D" parent="."]
+position = Vector2(68, 611)
+texture = ExtResource("15_ssvqc")
+
+[node name="TreeS2" type="Sprite2D" parent="."]
+position = Vector2(195, 487)
+texture = ExtResource("16_264po")
+
+[node name="TreeS3" type="Sprite2D" parent="."]
+position = Vector2(339, 484)
+texture = ExtResource("17_1kice")
+
+[node name="TreeS4" type="Sprite2D" parent="."]
+position = Vector2(503, 298)
+texture = ExtResource("18_5newe")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 102.0
+offset_top = 40.0
+offset_right = 1050.0
+offset_bottom = 67.0
+step = 1.0
