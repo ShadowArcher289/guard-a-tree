@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://da51qi2uwvtm7"]
+
+[ext_resource type="Texture2D" uid="uid://be8ulrwfau4c1" path="res://sprites/TermiteW1.png" id="1_8m3yg"]
+[ext_resource type="Script" uid="uid://dlb7hx3epkaj8" path="res://scripts/termite.gd" id="1_qaa0j"]
+[ext_resource type="Texture2D" uid="uid://da8am2ym48b1p" path="res://sprites/TermiteW2.png" id="2_qaa0j"]
+[ext_resource type="Texture2D" uid="uid://q7cc0wa5khtf" path="res://sprites/TermiteW3.png" id="3_80lpo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qaa0j"]
+radius = 14.0
+height = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ot51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8m3yg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qaa0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_80lpo")
+}],
+"loop": false,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80lpo"]
+radius = 20.0
+height = 48.0
+
+[node name="Termite" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_qaa0j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qaa0j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ot51")
+animation = &"move"
+frame = 1
+frame_progress = 0.871839
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_80lpo")
+
+[node name="AtkTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="AtkTimer" to="." method="_on_atk_timer_timeout"]
