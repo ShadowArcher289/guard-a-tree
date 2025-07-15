@@ -6,14 +6,11 @@ extends Node2D
 const TERMITE = preload("res://scenes/termite.tscn");
 
 func spawn() -> void:
-	print(game)
-	print("spawn")
 	var entity;
 	match spawnerType:
 		"termite":
-				print("Summon termite")
+				print_debug("Summoned termite")
 				entity = TERMITE.instantiate();
-				print(entity)
 				entity.show();
 				entity.velocity = Vector2(0, 0);
 				entity.position = self.position;

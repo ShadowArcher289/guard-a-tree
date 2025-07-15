@@ -12,8 +12,6 @@ func _ready() -> void:
 	termite_spawner_2.spawn();
 	termite_spawner_1.spawn();
 
-
-
 func _process(delta: float) -> void:
 	progress_bar.value = Globals.currHp; # Temporary HP display.
 	

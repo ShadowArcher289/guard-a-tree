@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://be8ulrwfau4c1" path="res://sprites/TermiteW1.png" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://da8am2ym48b1p" path="res://sprites/TermiteW2.png" id="5_gee14"]
 [ext_resource type="Texture2D" uid="uid://q7cc0wa5khtf" path="res://sprites/TermiteW3.png" id="6_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://b3ir4fwhliear" path="res://sprites/Boot.png" id="7_vtaks"]
 [ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="8_vtaks"]
 [ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="9_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://cjv2fm5exnxk0" path="res://sprites/LaserReady.png" id="10_dinhu"]
@@ -16,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dasuvqquyhfrf" path="res://sprites/FLY.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://bbovxhcvyylvl" path="res://sprites/HPBarOutline.png" id="13_trtic"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
+[ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
 [ext_resource type="PackedScene" uid="uid://j4y3ddhxr3l3" path="res://scenes/spawner.tscn" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://da51qi2uwvtm7" path="res://scenes/termite.tscn" id="21_5newe"]
 
@@ -26,13 +26,11 @@ script = ExtResource("1_1kice")
 anchor_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(2.11775e-06, 0.845876, 0.852649, 1)
 
 [node name="Ground" parent="." instance=ExtResource("17_rysoc")]
-visible = false
 position = Vector2(581, 633)
 
 [node name="Cloud" type="Sprite2D" parent="."]
@@ -62,10 +60,6 @@ texture = ExtResource("5_gee14")
 [node name="TermiteW3" type="Sprite2D" parent="."]
 position = Vector2(395, 423)
 texture = ExtResource("6_0tnpc")
-
-[node name="Boot" type="Sprite2D" parent="."]
-position = Vector2(876, 111)
-texture = ExtResource("7_vtaks")
 
 [node name="LaserBase" type="Sprite2D" parent="."]
 position = Vector2(205, 616)
@@ -127,3 +121,6 @@ position = Vector2(1095, 562)
 
 [node name="TermiteSpawner2" parent="." instance=ExtResource("18_ssvqc")]
 position = Vector2(38, 593)
+
+[node name="Boot2" parent="." instance=ExtResource("18_264po")]
+position = Vector2(781, -89)

@@ -11,6 +11,7 @@ var currHp = MAXHP;
 
 #Weapons
 const BOOTDMG = 5;
+const STOMPSPEED = 200;
 
 #Enemies
 const AVGTERMITESPEED = 50.0; #termite 
