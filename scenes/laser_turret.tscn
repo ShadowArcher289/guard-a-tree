@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=3 uid="uid://4yx14a34ap3g"]
+
+[ext_resource type="Script" uid="uid://crpfe7yqaxey1" path="res://scripts/laser_turret.gd" id="1_a5lw2"]
+[ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="1_iti7k"]
+[ext_resource type="Texture2D" uid="uid://cjv2fm5exnxk0" path="res://sprites/LaserReady.png" id="2_a5lw2"]
+[ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="3_u1x4h"]
+[ext_resource type="Texture2D" uid="uid://b02rpgrvrvnmj" path="res://sprites/Laser_Beam.png" id="5_mvsyt"]
+[ext_resource type="Texture2D" uid="uid://bvds2lcwat3bb" path="res://sprites/Laser_Ball.png" id="5_u1x4h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a5lw2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iti7k")
+}],
+"loop": false,
+"name": &"cooldown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a5lw2")
+}],
+"loop": false,
+"name": &"ready",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvsyt"]
+size = Vector2(1416.21, 58.9495)
+
+[node name="LaserTurret" type="Node2D"]
+script = ExtResource("1_a5lw2")
+
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("3_u1x4h")
+
+[node name="Turret" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -40)
+rotation = 0.00189667
+sprite_frames = SubResource("SpriteFrames_a5lw2")
+animation = &"ready"
+offset = Vector2(0, -6)
+
+[node name="LaserBeam" type="Sprite2D" parent="Turret"]
+visible = false
+position = Vector2(0, -68.08)
+rotation = 1.5708
+scale = Vector2(1.00203, 0.797227)
+texture = ExtResource("5_mvsyt")
+offset = Vector2(-700.073, -0.044927)
+
+[node name="Hurtbox" type="Area2D" parent="Turret/LaserBeam"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Turret/LaserBeam/Hurtbox"]
+position = Vector2(-696.005, 0.370978)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_mvsyt")
+
+[node name="LaserBall" type="Sprite2D" parent="Turret"]
+visible = false
+position = Vector2(0, -70)
+texture = ExtResource("5_u1x4h")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -28.0
+offset_top = -67.0
+offset_right = 27.0
+offset_bottom = -15.0
+button_mask = 2
+flat = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="body_entered" from="Turret/LaserBeam/Hurtbox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -14,5 +14,3 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	progress_bar.value = Globals.currHp; # Temporary HP display.
-	
-	

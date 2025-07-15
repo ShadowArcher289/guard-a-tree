@@ -17,6 +17,7 @@ texture = ExtResource("1_avsvi")
 one_shot = true
 
 [node name="TreeHitbox" type="Area2D" parent="."]
+collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreeHitbox"]
 position = Vector2(1, -329)

@@ -1,22 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpl1hoahnr1l2"]
+[gd_scene load_steps=15 format=3 uid="uid://cpl1hoahnr1l2"]
 
 [ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
 [ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
-[ext_resource type="Texture2D" uid="uid://5pcwo0feh3my" path="res://sprites/TermiCopter.png" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://b5oi7xhubi40g" path="res://scenes/tree.tscn" id="4_1kice"]
-[ext_resource type="Texture2D" uid="uid://be8ulrwfau4c1" path="res://sprites/TermiteW1.png" id="4_u5sy4"]
-[ext_resource type="Texture2D" uid="uid://da8am2ym48b1p" path="res://sprites/TermiteW2.png" id="5_gee14"]
-[ext_resource type="Texture2D" uid="uid://q7cc0wa5khtf" path="res://sprites/TermiteW3.png" id="6_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="8_vtaks"]
-[ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="9_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://cjv2fm5exnxk0" path="res://sprites/LaserReady.png" id="10_dinhu"]
 [ext_resource type="Texture2D" uid="uid://cq7inf7udh14j" path="res://sprites/FLIESMachine.png" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://dasuvqquyhfrf" path="res://sprites/FLY.png" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://bbovxhcvyylvl" path="res://sprites/HPBarOutline.png" id="13_trtic"]
+[ext_resource type="PackedScene" uid="uid://bnf7j8gxpohtc" path="res://scenes/termi_copter.tscn" id="14_trtic"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
+[ext_resource type="Texture2D" uid="uid://4opqoth8cqw" path="res://sprites/Bullet.png" id="17_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
 [ext_resource type="PackedScene" uid="uid://j4y3ddhxr3l3" path="res://scenes/spawner.tscn" id="18_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://4yx14a34ap3g" path="res://scenes/laser_turret.tscn" id="19_264po"]
 [ext_resource type="PackedScene" uid="uid://da51qi2uwvtm7" path="res://scenes/termite.tscn" id="21_5newe"]
 
 [node name="Game" type="Node2D"]
@@ -41,44 +37,9 @@ texture = ExtResource("2_1kice")
 position = Vector2(273, 279)
 texture = ExtResource("2_1kice")
 
-[node name="TermiCopter" type="Sprite2D" parent="."]
-position = Vector2(198, 216)
-texture = ExtResource("2_lnu2h")
-
 [node name="Seed" type="Sprite2D" parent="."]
 position = Vector2(990, 213)
 texture = ExtResource("3_lbhrr")
-
-[node name="TermiteW1" type="Sprite2D" parent="."]
-position = Vector2(247, 423)
-texture = ExtResource("4_u5sy4")
-
-[node name="TermiteW2" type="Sprite2D" parent="."]
-position = Vector2(320, 424)
-texture = ExtResource("5_gee14")
-
-[node name="TermiteW3" type="Sprite2D" parent="."]
-position = Vector2(395, 423)
-texture = ExtResource("6_0tnpc")
-
-[node name="LaserBase" type="Sprite2D" parent="."]
-position = Vector2(205, 616)
-texture = ExtResource("8_vtaks")
-
-[node name="LaserCooldown" type="Sprite2D" parent="."]
-position = Vector2(200, 589)
-rotation = -1.00156
-texture = ExtResource("9_kvpfn")
-
-[node name="LaserReady" type="Sprite2D" parent="."]
-position = Vector2(82, 425)
-rotation = 2.22281
-texture = ExtResource("10_dinhu")
-
-[node name="LaserBase2" type="Sprite2D" parent="."]
-position = Vector2(51, 421)
-rotation = 1.56203
-texture = ExtResource("8_vtaks")
 
 [node name="FliesMachine" type="Sprite2D" parent="."]
 position = Vector2(415, 595)
@@ -111,7 +72,7 @@ offset_bottom = 67.0
 step = 1.0
 
 [node name="Termite" parent="." instance=ExtResource("21_5newe")]
-position = Vector2(674, 451)
+position = Vector2(904, 427)
 
 [node name="Termite2" parent="." instance=ExtResource("21_5newe")]
 position = Vector2(74, 539)
@@ -124,3 +85,31 @@ position = Vector2(38, 593)
 
 [node name="Boot2" parent="." instance=ExtResource("18_264po")]
 position = Vector2(781, -89)
+
+[node name="LaserTurret" parent="." instance=ExtResource("19_264po")]
+position = Vector2(763, 623)
+
+[node name="LaserTurret2" parent="." instance=ExtResource("19_264po")]
+position = Vector2(599, 504)
+location = "wall-left"
+
+[node name="LaserTurret3" parent="." instance=ExtResource("19_264po")]
+position = Vector2(1148, 392)
+location = "wall-right"
+
+[node name="LaserTurret4" parent="." instance=ExtResource("19_264po")]
+position = Vector2(994, 2)
+location = "ceiling"
+
+[node name="LaserTurret5" parent="." instance=ExtResource("19_264po")]
+position = Vector2(175, 624)
+
+[node name="Bullet" type="Sprite2D" parent="."]
+position = Vector2(440, 267)
+texture = ExtResource("17_ssvqc")
+
+[node name="TermiCopter" parent="." instance=ExtResource("14_trtic")]
+position = Vector2(85, 134)
+
+[node name="TermiCopter2" parent="." instance=ExtResource("14_trtic")]
+position = Vector2(190, 295)

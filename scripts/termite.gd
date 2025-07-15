@@ -53,8 +53,7 @@ func move(delta: float) -> void:
 func attack():
 	Globals.currHp -= ATK; # deal dmg to the tree
 
-func attacked(dmgTaken : int):
-	print("attacked!")
+func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
 
 func kick_the_bucket(): # this termite no longer lives. R.I.P.

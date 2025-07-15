@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnf7j8gxpohtc"]
+
+[ext_resource type="Texture2D" uid="uid://5pcwo0feh3my" path="res://sprites/TermiCopter.png" id="1_caxa2"]
+[ext_resource type="Script" uid="uid://b33ardfks2g7p" path="res://scripts/termi_copter.gd" id="1_rok8r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rok8r"]
+radius = 44.0
+height = 116.0
+
+[node name="TermiCopter" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_rok8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_caxa2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rok8r")
+
+[node name="ShootingTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="BulletSpawnAnchor" type="Node2D" parent="."]
+position = Vector2(90, 27)
+
+[node name="TargetRay" type="RayCast2D" parent="."]
+position = Vector2(0, 26)
+target_position = Vector2(410, 0)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
