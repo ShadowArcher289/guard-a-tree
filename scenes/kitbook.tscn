@@ -1,5 +1,132 @@
-[gd_scene format=3 uid="uid://w2ej12ndkpyd"]
+[gd_scene load_steps=3 format=3 uid="uid://w2ej12ndkpyd"]
 
-[node name="Kitbook" type="TabBar"]
-offset_right = 794.0
-offset_bottom = 419.0
+[ext_resource type="Texture2D" uid="uid://bk2ms6s3g2by7" path="res://icon.svg" id="1_6kmqj"]
+[ext_resource type="Theme" uid="uid://c8jhfrhhhhitc" path="res://themes/kitbook.tres" id="1_qno10"]
+
+[node name="Kitbook" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65997, 0.422629, 0.238297, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+current_tab = 0
+tabs_visible = false
+
+[node name="Stomp" type="HBoxContainer" parent="VBoxContainer/TabBar"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="StompLeft" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/TabBar/Stomp/StompLeft"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stomp"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Body" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "ouytrdeszdfgchjkipo[lkoiuhytgfdgvhbjnkmlp[pkojhgv"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dmg" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StompRight" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/TabBar/Stomp/StompRight"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Icon" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(245, 80)
+texture = ExtResource("1_6kmqj")
+
+[node name="Icon2" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(247, 220)
+texture = ExtResource("1_6kmqj")
+
+[node name="Icon3" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(247, 369)
+texture = ExtResource("1_6kmqj")
+
+[node name="FlipPageButtons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevPage" type="Button" parent="VBoxContainer/FlipPageButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("1_6kmqj")
+
+[node name="NextPage" type="Button" parent="VBoxContainer/FlipPageButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("1_6kmqj")
+icon_alignment = 2
