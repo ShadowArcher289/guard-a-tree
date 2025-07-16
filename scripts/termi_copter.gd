@@ -1,15 +1,24 @@
 extends CharacterBody2D
 
 @onready var game = get_tree().get_root().get_node("Game");
-const BULLET = preload("res://scenes/bullet.tscn")
+const BULLET = preload("res://scenes/bullet.tscn");
 
-@onready var bullet_spawn_anchor: Node2D = $BulletSpawnAnchor
+var bullet_spawn_anchor = bullet_spawn_anchor_right;
+@onready var bullet_spawn_anchor_left: Node2D = $Sprite2D/BulletSpawnAnchorLeft
+@onready var bullet_spawn_anchor_right: Node2D = $Sprite2D/BulletSpawnAnchorRight
+
 @onready var shooting_timer: Timer = $ShootingTimer
 
-@onready var target_ray: RayCast2D = $TargetRay
+var target_ray = target_ray_right;
+@onready var target_ray_left: RayCast2D = $Sprite2D/TargetRayLeft
+@onready var target_ray_right: RayCast2D = $Sprite2D/TargetRayRight
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var hp = Globals.TERMICOPTERMAXHP;
-const SPEED = Globals.AVGTERMICOPTERSPEED
+var directionX = 1;
+var speed = Globals.AVGTERMICOPTERSPEED * randf_range(0.9, 1.1); # TermiCopters have slightly different speeds
 const SHOOTINGCYCLETIME = Globals.SHOOTINGCYCLETIME
 
 var movementTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT);
@@ -24,16 +33,53 @@ enum weaponState {
 	SHOOTING,
 }
 
+func _ready() -> void:
+	moving = true;
+	target_ray_left.target_position.x *= randf_range(0.6, 1); # Copters have slightly different ranges 
+	target_ray_right.target_position.x *= randf_range(0.6, 1); # Copters have slightly different ranges 
+	if position.x < 576: # change direction based on where the enemy is spawned.
+		directionX = 1;
+	elif position.x > 576:
+		directionX = -1;
+	
+	if directionX == -1: # Flip the sprite
+		sprite_2d.flip_h = true;
+		bullet_spawn_anchor = bullet_spawn_anchor_right;
+		target_ray = target_ray_right;
+	elif directionX == 1:
+		sprite_2d.flip_h = false;
+		bullet_spawn_anchor = bullet_spawn_anchor_left;
+		target_ray = target_ray_left;
+
 func _process(delta: float) -> void:
 	if hp <= 0:
 		kick_the_bucket()
 		pass;
+	
+	if position.x < 576: # change direction based on where the enemy is spawned.
+		directionX = 1;
+	elif position.x > 576:
+		directionX = -1;
+	
+	if directionX == -1: # Flip the sprite and handle other flipping node issues
+		sprite_2d.flip_h = true;
+		bullet_spawn_anchor = bullet_spawn_anchor_left;
+		target_ray = target_ray_left;
+		collision_shape_2d.position.x = -24.0;
+	elif directionX == 1:
+		sprite_2d.flip_h = false;
+		bullet_spawn_anchor = bullet_spawn_anchor_right;
+		target_ray = target_ray_right;
+		collision_shape_2d.position.x = 24.0;
 
+		
+	
 	if moving:
-		pass; # Play movement animation
+		move(delta);
 	
 	if target_ray.is_colliding() && target_ray.get_collider().name.containsn("tree"):
 		currentWeaponState = weaponState.SHOOTING;
+		moving = false;
 	else:
 		currentWeaponState = weaponState.NOTSHOOTING;
 	
@@ -48,28 +94,32 @@ func _process(delta: float) -> void:
 				shooting_timer.start(SHOOTINGCYCLETIME);
 
 func is_attacked(dmgTaken : int):
-	print("hp" + str(hp))
 	hp -= dmgTaken;
+	print("hp" + str(hp));
 
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.
 	queue_free();
 
 func spawn_bullet(velo : float) -> void:
 	var bullet = BULLET.instantiate();
-	print_debug(bullet);
 	bullet.position = bullet_spawn_anchor.global_position;
 	bullet.show();
 	bullet.velo = velo;
+	bullet.rotation = sprite_2d.global_rotation;
 	game.add_child.call_deferred(bullet);
 
-func move(delta : float, targetPosition : Vector2) -> void:
-	if !movementTween.is_valid(): # re-creates tween if it's invalid.
-		movementTween.kill();
-		movementTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN);
-	movementTween.tween_property(self, "position", targetPosition, 100/SPEED);
-
+func move(delta : float) -> void: # , targetPosition : Vector2
+	#if !movementTween.is_valid(): # re-creates tween if it's invalid.
+	#	movementTween.kill();
+	#	movementTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN);
+	#movementTween.tween_property(self, "position", targetPosition, 100/SPEED);
+	
+	velocity.x = directionX * speed; # horizontal movement
+	# movement animation.
+	
+	move_and_slide();
 
 func _on_shooting_timer_timeout() -> void:
 	for i in 5: # shoot i number of bullets per cycle
-		spawn_bullet(Globals.BULLETVELOCITY);
+		spawn_bullet(Globals.BULLETVELOCITY * directionX); # bullet has velocity and direction
 		await get_tree().create_timer(0.1).timeout;

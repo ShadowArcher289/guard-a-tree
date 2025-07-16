@@ -86,6 +86,7 @@ func fire_laser() -> void: # fire laser script
 		laserTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN);
 	laserTween.tween_property(laser_ball, "scale", Vector2(1, 1), 0.5);
 	await laserTween.finished;
+	camera_shake();
 	change_state(State.COOLDOWN);
 	laser_beam.show();
 	laser_timer.start(LASERDURATION);
@@ -93,6 +94,16 @@ func fire_laser() -> void: # fire laser script
 	hide_laser();
 	firing = false;
 	cooldown_timer.start(LASERCOOLDOWNDURATION); # start cooldown timer
+
+func camera_shake() -> void: # shakes the camera
+	var camera = get_tree().get_root().get_node("Game").get_child(0); # get the camera node (using very sloppy code)
+	var ogCameraPos = camera.position;
+	for i in 8: # move the camera 8 times to make it look like it's shaking.
+		camera.position += Vector2(randi_range(-10, 10), randi_range(-10, 10));
+		await get_tree().create_timer(0.1).timeout;
+		camera.position = ogCameraPos; # set camera to the origional position
+	camera.position = ogCameraPos;
+	
 
 func hide_laser() -> void: # hide the laser
 	laser_ball.hide();
@@ -118,6 +129,6 @@ func _on_cooldown_timer_timeout() -> void: # change to READY state once cooldown
 	change_state(State.READY);
 
 
-func _on_hurt_box_body_entered(body: Node2D) -> void:
+func _on_hurt_box_body_entered(body: Node2D) -> void: # deal damage to bodies with the is_attacked function (enemies)
 	if body.has_method("is_attacked"):
 		body.is_attacked(LASERDMG);

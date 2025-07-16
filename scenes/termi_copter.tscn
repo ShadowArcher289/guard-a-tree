@@ -9,10 +9,34 @@ height = 116.0
 
 [node name="TermiCopter" type="CharacterBody2D"]
 collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_rok8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_caxa2")
+
+[node name="TargetRayRight" type="RayCast2D" parent="Sprite2D"]
+position = Vector2(0, 26)
+target_position = Vector2(410, 0)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="TargetRayLeft" type="RayCast2D" parent="Sprite2D"]
+position = Vector2(0, 26)
+target_position = Vector2(-410, 0)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="BulletSpawnAnchorRight" type="Node2D" parent="Sprite2D"]
+position = Vector2(90, 27)
+
+[node name="BulletSpawnAnchorLeft" type="Node2D" parent="Sprite2D"]
+position = Vector2(-90, 27)
+rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(24, 4)
@@ -21,16 +45,5 @@ shape = SubResource("CapsuleShape2D_rok8r")
 
 [node name="ShootingTimer" type="Timer" parent="."]
 wait_time = 3.0
-
-[node name="BulletSpawnAnchor" type="Node2D" parent="."]
-position = Vector2(90, 27)
-
-[node name="TargetRay" type="RayCast2D" parent="."]
-position = Vector2(0, 26)
-target_position = Vector2(410, 0)
-collision_mask = 4
-hit_from_inside = true
-collide_with_areas = true
-collide_with_bodies = false
 
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

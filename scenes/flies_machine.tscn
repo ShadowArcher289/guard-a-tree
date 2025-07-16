@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw3tn24lhtgf4"]
+
+[ext_resource type="Texture2D" uid="uid://cq7inf7udh14j" path="res://sprites/FLIESMachine.png" id="1_qreaw"]
+[ext_resource type="Script" uid="uid://c6lj2oymqq6h4" path="res://scripts/flies_machine.gd" id="1_r0ve2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0ve2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_72b6k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f15cw"]
+
+[node name="FliesMachine" type="Node2D"]
+script = ExtResource("1_r0ve2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -39)
+texture = ExtResource("1_qreaw")
+
+[node name="FlyAnchor1" type="Area2D" parent="."]
+position = Vector2(0, -121)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor1"]
+shape = SubResource("CircleShape2D_r0ve2")
+
+[node name="FlyAnchor2" type="Area2D" parent="."]
+position = Vector2(-35, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor2"]
+shape = SubResource("CircleShape2D_72b6k")
+
+[node name="FlyAnchor3" type="Area2D" parent="."]
+position = Vector2(35, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor3"]
+shape = SubResource("CircleShape2D_f15cw")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="FlyAnchor1" to="." method="_on_fly_anchor_1_body_entered"]
+[connection signal="body_exited" from="FlyAnchor1" to="." method="_on_fly_anchor_1_body_exited"]
+[connection signal="body_entered" from="FlyAnchor2" to="." method="_on_fly_anchor_2_body_entered"]
+[connection signal="body_exited" from="FlyAnchor2" to="." method="_on_fly_anchor_2_body_exited"]
+[connection signal="body_entered" from="FlyAnchor3" to="." method="_on_fly_anchor_3_body_entered"]
+[connection signal="body_exited" from="FlyAnchor3" to="." method="_on_fly_anchor_3_body_exited"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

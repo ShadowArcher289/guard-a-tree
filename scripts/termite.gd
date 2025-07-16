@@ -11,7 +11,7 @@ var attacking = false;
 var atkTarget = null;
 
 var directionX = 1;
-var speed = Globals.AVGTERMITESPEED * randf_range(0.9, 1.1);
+var speed = Globals.AVGTERMITESPEED * randf_range(0.9, 1.1); # termites have slightly different speeds
 const ATK = Globals.TERMITEATK;
 
 func _ready() -> void:
@@ -23,10 +23,15 @@ func _process(delta: float) -> void:
 		kick_the_bucket()
 		pass;
 	
-	if position.x < 576: # change direction based on where the termite is spawned.
+	if position.x < 576: # change direction based on where the enemy is spawned.
 		directionX = -1;
 	elif position.x > 576:
 		directionX = 1;
+	
+	if directionX == -1: # Flip the sprite
+		animated_sprite_2d.flip_h = false;
+	elif directionX == 1:
+		animated_sprite_2d.flip_h = true;
 		
 	if moving:
 		move(delta);
@@ -36,10 +41,7 @@ func _process(delta: float) -> void:
 	elif !attacking && !atk_timer.is_stopped():
 		atk_timer.stop();
 	
-	if directionX == -1: # Flip the sprite
-		animated_sprite_2d.flip_h = false;
-	elif directionX == 1:
-		animated_sprite_2d.flip_h = true;
+	
 	
 	velocity.y -= -Globals.GRAVITY;
 	
@@ -55,6 +57,7 @@ func attack():
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
+	print("TermiteHp" + str(hp))
 
 func kick_the_bucket(): # this termite no longer lives. R.I.P.
 	queue_free();

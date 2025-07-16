@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://2trcqmt1r74g"]
+
+[ext_resource type="Script" uid="uid://dtftykpftt06a" path="res://scripts/fly.gd" id="1_djddo"]
+[ext_resource type="Texture2D" uid="uid://dasuvqquyhfrf" path="res://sprites/FLY.png" id="2_xr3pu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xr3pu"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2lkvx"]
+radius = 9.0
+
+[node name="Fly" type="CharacterBody2D"]
+script = ExtResource("1_djddo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_xr3pu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xr3pu")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_2lkvx")
+
+[node name="LocateTargetRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 1400)
+collision_mask = 2
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

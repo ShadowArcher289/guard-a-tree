@@ -30,6 +30,6 @@ func stomp(targetPos : Vector2) -> void: # appears at the x coordinate and stomp
 	hide();
 
 
-func _on_hurtbox_body_entered(body: Node2D) -> void:
+func _on_hurtbox_body_entered(body: Node2D) -> void: # deal damage to bodies with the is_attacked function (enemies)
 	if body.has_method("is_attacked"):
 		body.is_attacked(BOOTDMG);
