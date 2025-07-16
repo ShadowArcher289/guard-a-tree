@@ -16,8 +16,8 @@ const STOMPSPEED = 200;
 const LASERDMG = 10; # LaserTurret
 var LaserAiming = false # true if a laser is currently amiing.
 
-const FLIESDMG = 1; # FLIES
-const FLIESSPEED = 200;
+const FLIESDMG = 2; # FLIES
+const FLIESSPEED = 300;
 
 #Enemies
 const AVGTERMITESPEED = 50.0; # termite 

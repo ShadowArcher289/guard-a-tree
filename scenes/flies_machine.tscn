@@ -17,30 +17,45 @@ position = Vector2(0, -39)
 texture = ExtResource("1_qreaw")
 
 [node name="FlyAnchor1" type="Area2D" parent="."]
-position = Vector2(0, -121)
+position = Vector2(0, -113)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor1"]
 shape = SubResource("CircleShape2D_r0ve2")
+disabled = true
 
 [node name="FlyAnchor2" type="Area2D" parent="."]
-position = Vector2(-35, -100)
+position = Vector2(-29, -96)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor2"]
 shape = SubResource("CircleShape2D_72b6k")
+disabled = true
 
 [node name="FlyAnchor3" type="Area2D" parent="."]
-position = Vector2(35, -100)
+position = Vector2(29, -96)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlyAnchor3"]
 shape = SubResource("CircleShape2D_f15cw")
+disabled = true
 
 [node name="SpawnTimer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="FlyAnchor1" to="." method="_on_fly_anchor_1_body_entered"]
-[connection signal="body_exited" from="FlyAnchor1" to="." method="_on_fly_anchor_1_body_exited"]
-[connection signal="body_entered" from="FlyAnchor2" to="." method="_on_fly_anchor_2_body_entered"]
-[connection signal="body_exited" from="FlyAnchor2" to="." method="_on_fly_anchor_2_body_exited"]
-[connection signal="body_entered" from="FlyAnchor3" to="." method="_on_fly_anchor_3_body_entered"]
-[connection signal="body_exited" from="FlyAnchor3" to="." method="_on_fly_anchor_3_body_exited"]
+[node name="FlyRay1" type="RayCast2D" parent="."]
+position = Vector2(0, -80)
+target_position = Vector2(0, -40)
+hit_from_inside = true
+
+[node name="FlyRay2" type="RayCast2D" parent="."]
+position = Vector2(-29, -80)
+target_position = Vector2(0, -24)
+hit_from_inside = true
+
+[node name="FlyRay3" type="RayCast2D" parent="."]
+position = Vector2(29, -80)
+target_position = Vector2(0, -24)
+hit_from_inside = true
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

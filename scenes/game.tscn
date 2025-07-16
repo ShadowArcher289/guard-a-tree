@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cpl1hoahnr1l2"]
+[gd_scene load_steps=12 format=3 uid="uid://cpl1hoahnr1l2"]
 
 [ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
 [ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
 [ext_resource type="PackedScene" uid="uid://b5oi7xhubi40g" path="res://scenes/tree.tscn" id="4_1kice"]
 [ext_resource type="Texture2D" uid="uid://bbovxhcvyylvl" path="res://sprites/HPBarOutline.png" id="13_trtic"]
 [ext_resource type="PackedScene" uid="uid://bnf7j8gxpohtc" path="res://scenes/termi_copter.tscn" id="14_trtic"]
-[ext_resource type="PackedScene" uid="uid://2trcqmt1r74g" path="res://scenes/fly.tscn" id="15_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dw3tn24lhtgf4" path="res://scenes/flies_machine.tscn" id="16_ca42v"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
 [ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
@@ -52,7 +51,7 @@ offset_bottom = 67.0
 step = 1.0
 
 [node name="Termite" parent="." instance=ExtResource("21_5newe")]
-position = Vector2(996, 477)
+position = Vector2(929, 601)
 
 [node name="Termite2" parent="." instance=ExtResource("21_5newe")]
 position = Vector2(74, 539)
@@ -98,17 +97,11 @@ position = Vector2(975, 294)
 position = Vector2(43, 230)
 spawnerType = "termi_copter"
 
-[node name="Fly4" parent="." instance=ExtResource("15_ir15t")]
-position = Vector2(347, 403)
-
-[node name="Fly5" parent="." instance=ExtResource("15_ir15t")]
-position = Vector2(1116, 103)
-
-[node name="Fly6" parent="." instance=ExtResource("15_ir15t")]
-position = Vector2(1100, 114)
-
-[node name="Fly7" parent="." instance=ExtResource("15_ir15t")]
-position = Vector2(1125, 174)
-
 [node name="FliesMachine2" parent="." instance=ExtResource("16_ca42v")]
 position = Vector2(890, 624)
+
+[node name="FliesMachine3" parent="." instance=ExtResource("16_ca42v")]
+position = Vector2(374, 624)
+
+[node name="FliesMachine4" parent="." instance=ExtResource("16_ca42v")]
+position = Vector2(482, 624)

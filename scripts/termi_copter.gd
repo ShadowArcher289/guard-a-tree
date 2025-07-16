@@ -95,7 +95,7 @@ func _process(delta: float) -> void:
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
-	print("hp" + str(hp));
+	print("CopterHp" + str(hp));
 
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.
 	queue_free();

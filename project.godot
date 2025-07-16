@@ -23,6 +23,10 @@ Globals="*res://scripts/Globals.gd"
 
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+fly="Group for FLIES only"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

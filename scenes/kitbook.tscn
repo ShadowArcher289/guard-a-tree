@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://w2ej12ndkpyd"]
+
+[node name="Kitbook" type="TabBar"]
+offset_right = 794.0
+offset_bottom = 419.0
