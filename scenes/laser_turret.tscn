@@ -64,7 +64,6 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Turret/LaserBeam/Hurtbox"]
 position = Vector2(-696.005, 0.370978)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mvsyt")
 
 [node name="LaserBall" type="Sprite2D" parent="Turret"]

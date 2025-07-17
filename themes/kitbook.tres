@@ -1,7 +1,13 @@
-[gd_resource type="Theme" format=3 uid="uid://c8jhfrhhhhitc"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c8jhfrhhhhitc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jn2lb"]
+bg_color = Color(0.860188, 0.709768, 0.510515, 1)
 
 [resource]
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 22
 MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+Panel/styles/panel = SubResource("StyleBoxFlat_jn2lb")

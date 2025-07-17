@@ -11,7 +11,7 @@ var attacking = false;
 var atkTarget = null;
 
 var directionX = 1;
-var speed = Globals.AVGTERMITESPEED * randf_range(0.9, 1.1); # termites have slightly different speeds
+var speed = Globals.AVGTERMITESPEED * randf_range(0.8, 1.2); # termites have slightly different speeds
 const ATK = Globals.TERMITEATK;
 
 func _ready() -> void:

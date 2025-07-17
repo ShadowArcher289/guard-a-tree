@@ -32,6 +32,7 @@ var laserTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_
 
 func _ready() -> void:
 	button.focus_mode = Control.FOCUS_NONE;
+	cooldown_timer.wait_time = Globals.LASERCOOLDOWNTIME;
 	laser_ball.hide();
 	laser_beam.hide();
 	change_state(State.READY);

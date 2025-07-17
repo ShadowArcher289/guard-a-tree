@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 				look_at(targetPosition);
 				rotation_degrees += 90;
 				direction = (targetPosition - self.position).normalized(); # face and move torwards target
+				print("direction:" + str(direction))
 				velocity = (direction * speed);
 				move_and_slide();
 			else:

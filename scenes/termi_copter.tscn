@@ -46,4 +46,7 @@ shape = SubResource("CapsuleShape2D_rok8r")
 [node name="ShootingTimer" type="Timer" parent="."]
 wait_time = 3.0
 
+[node name="MoveCycleTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
+[connection signal="timeout" from="MoveCycleTimer" to="." method="_on_move_cycle_timer_timeout"]

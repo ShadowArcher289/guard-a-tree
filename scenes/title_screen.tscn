@@ -1,0 +1,199 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddvjjahe7lgyu"]
+
+[ext_resource type="Script" uid="uid://2wsnrgnrg2g7" path="res://scripts/title_screen.gd" id="1_sa3yf"]
+[ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://jjqna8na6cf3" path="res://sprites/SeedSelected.png" id="3_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://b47axn4akbn31" path="res://sprites/RainbowSeed.png" id="3_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://brl6hwgnxhjpa" path="res://sprites/RainbowSeedSelected.png" id="5_e54dn"]
+[ext_resource type="Texture2D" uid="uid://cm07kbrb4eghk" path="res://sprites/GhostCursor.png" id="6_e54dn"]
+[ext_resource type="Texture2D" uid="uid://dq04503qkurlq" path="res://sprites/Quotes.png" id="7_3yumr"]
+
+[sub_resource type="Animation" id="Animation_dc4i4"]
+resource_name = "Transition_Tutorial"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Seed:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(432, 321), Vector2(432, 301), Vector2(432, 301), Vector2(432, 712)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Seed:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.409975, 0.692896]
+}
+
+[sub_resource type="Animation" id="Animation_e54dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Seed:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(432, 321)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Seed:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RainbowSeed:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(755, 321)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RainbowSeed:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3yumr"]
+resource_name = "Transition_Endless"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RainbowSeed:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1333, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(755, 321), Vector2(755, 301), Vector2(755, 301), Vector2(755, 712)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RainbowSeed:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.410152, 0.692896]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yumr"]
+_data = {
+&"RESET": SubResource("Animation_e54dn"),
+&"Transition_Endless": SubResource("Animation_3yumr"),
+&"Transition_Tutorial": SubResource("Animation_dc4i4")
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_sa3yf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -172.0
+offset_top = -96.0
+offset_right = 1291.0
+offset_bottom = 740.0
+color = Color(0, 0, 0, 1)
+
+[node name="TutorialButton" type="TextureButton" parent="."]
+offset_left = 372.0
+offset_top = 261.0
+offset_right = 492.0
+offset_bottom = 381.0
+texture_normal = ExtResource("2_s4lrb")
+texture_pressed = ExtResource("2_s4lrb")
+texture_hover = ExtResource("3_dc4i4")
+stretch_mode = 5
+
+[node name="EndlessButton" type="TextureButton" parent="."]
+offset_left = 695.0
+offset_top = 263.0
+offset_right = 815.0
+offset_bottom = 383.0
+texture_normal = ExtResource("3_s4lrb")
+texture_pressed = ExtResource("3_s4lrb")
+texture_hover = ExtResource("5_e54dn")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 376.0
+offset_right = 461.0
+offset_bottom = 399.0
+text = "Tutorial"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 728.0
+offset_top = 376.0
+offset_right = 787.0
+offset_bottom = 399.0
+text = "Endless"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3yumr")
+}
+
+[node name="Seed" type="Sprite2D" parent="."]
+position = Vector2(432, 321)
+texture = ExtResource("2_s4lrb")
+
+[node name="RainbowSeed" type="Sprite2D" parent="."]
+position = Vector2(755, 321)
+texture = ExtResource("3_s4lrb")
+
+[node name="GhostCursor" type="Sprite2D" parent="."]
+position = Vector2(468, 359)
+rotation = -0.000370309
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("6_e54dn")
+
+[node name="Quotes" type="Sprite2D" parent="."]
+position = Vector2(405, 352)
+rotation = -0.442746
+texture = ExtResource("7_3yumr")
+flip_v = true
+
+[node name="Quotes2" type="Sprite2D" parent="."]
+position = Vector2(457, 288)
+rotation = -3.5195
+texture = ExtResource("7_3yumr")
+flip_v = true
+
+[connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="EndlessButton" to="." method="_on_endless_button_pressed"]

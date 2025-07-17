@@ -15,23 +15,22 @@ const MAXHP = Globals.MAXHP;
 var currHp = MAXHP;
 
 func _ready() -> void:
-	grow_delay.wait_time = 0.2;
+	grow_delay.wait_time = 1;
 	grow();
 
 func grow() -> void:
-	print("growing")
-	sprite.position = Vector2(0, -34.0);
-	sprite.texture = S1;
-	grow_delay.start();
-	await grow_delay.timeout;
+	#sprite.position = Vector2(0, -34.0);
+	#sprite.texture = S1;
+	#grow_delay.start();
+	#await grow_delay.timeout;
 	sprite.position = Vector2(28, -158.0);
 	sprite.texture = S2;
 	grow_delay.start();
 	await grow_delay.timeout;
-	sprite.position = Vector2(4, -163.0);
-	sprite.texture = S3;
-	grow_delay.start();
-	await grow_delay.timeout;
+	#sprite.position = Vector2(4, -163.0);
+	#sprite.texture = S3;
+	#grow_delay.start();
+	#await grow_delay.timeout;
 	sprite.position = Vector2(0, -355.0);
 	sprite.texture = S4;
 	grow_delay.start();

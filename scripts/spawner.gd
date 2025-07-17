@@ -5,6 +5,8 @@ extends Node2D
 
 const TERMITE = preload("res://scenes/termite.tscn");
 const TERMI_COPTER = preload("res://scenes/termi_copter.tscn");
+const TREE = preload("res://scenes/tree.tscn");
+
 
 func spawn() -> void:
 	var entity;
@@ -21,6 +23,12 @@ func spawn() -> void:
 			entity = TERMI_COPTER.instantiate();
 			entity.show();
 			entity.velocity = Vector2(0, 0);
+			entity.position = self.position;
+			game.add_child.call_deferred(entity); # adds the enity to game
+		"tree":
+			print_debug("Summoned tree")
+			entity = TREE.instantiate();
+			entity.show();
 			entity.position = self.position;
 			game.add_child.call_deferred(entity); # adds the enity to game
 		_:

@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mi8v4"]
 radius = 9.0
-height = 1234.0
+height = 2152.0
 
 [node name="Ground" type="StaticBody2D"]
 collision_layer = 3

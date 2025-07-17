@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://w2ej12ndkpyd"]
+[gd_scene load_steps=15 format=3 uid="uid://w2ej12ndkpyd"]
 
-[ext_resource type="Texture2D" uid="uid://bk2ms6s3g2by7" path="res://icon.svg" id="1_6kmqj"]
 [ext_resource type="Theme" uid="uid://c8jhfrhhhhitc" path="res://themes/kitbook.tres" id="1_qno10"]
+[ext_resource type="Script" uid="uid://wpehhjv6wcei" path="res://scripts/kitbook.gd" id="1_vx6hw"]
+[ext_resource type="Theme" uid="uid://iaeqmqetvs56" path="res://themes/text_header.tres" id="2_ime2e"]
+[ext_resource type="Texture2D" uid="uid://b3ir4fwhliear" path="res://sprites/Boot.png" id="4_2vfhu"]
+[ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="5_0cvog"]
+[ext_resource type="Texture2D" uid="uid://be8ulrwfau4c1" path="res://sprites/TermiteW1.png" id="5_jfbcy"]
+[ext_resource type="Texture2D" uid="uid://5pcwo0feh3my" path="res://sprites/TermiCopter.png" id="5_tmbtd"]
+[ext_resource type="Texture2D" uid="uid://cq7inf7udh14j" path="res://sprites/FLIESMachine.png" id="5_u4ds3"]
+[ext_resource type="Texture2D" uid="uid://cjv2fm5exnxk0" path="res://sprites/LaserReady.png" id="6_2vfhu"]
+[ext_resource type="Texture2D" uid="uid://dasuvqquyhfrf" path="res://sprites/FLY.png" id="6_gdees"]
+[ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="11_gbm7a"]
+[ext_resource type="Texture2D" uid="uid://x1ba1pvooxfm" path="res://sprites/Arrow_Selected.png" id="13_5l28t"]
+[ext_resource type="Texture2D" uid="uid://q5tit2arhqr2" path="res://sprites/Arrow.png" id="13_gbm7a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmbtd"]
+bg_color = Color(0.20889, 0.646973, 0.854152, 1)
 
 [node name="Kitbook" type="Control"]
 layout_mode = 3
@@ -12,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
+script = ExtResource("1_vx6hw")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -30,26 +45,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabBar" type="TabContainer" parent="VBoxContainer"]
+[node name="KitbookTabContainer" type="TabContainer" parent="VBoxContainer"]
+process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 0
+current_tab = 3
 tabs_visible = false
+tab_focus_mode = 0
 
-[node name="Stomp" type="HBoxContainer" parent="VBoxContainer/TabBar"]
+[node name="Stomp" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="StompLeft" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp"]
+[node name="StompLeft" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Stomp"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_qno10")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/TabBar/Stomp/StompLeft"]
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft"]
 layout_mode = 2
+theme = ExtResource("1_qno10")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,40 +77,50 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qno10")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Name" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+[node name="Name" type="Label" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ime2e")
 text = "Stomp"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Body" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
-text = "ouytrdeszdfgchjkipo[lkoiuhytgfdgvhbjnkmlp[pkojhgv"
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Left-Click to STOMP"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Dmg" type="Label" parent="VBoxContainer/TabBar/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer"]
+[node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/Stomp/StompLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "5 Damage"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="StompRight" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp"]
+[node name="StompRight" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Stomp"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_qno10")
 
-[node name="Panel" type="Panel" parent="VBoxContainer/TabBar/Stomp/StompRight"]
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Stomp/StompRight"]
 layout_mode = 2
+theme = ExtResource("1_qno10")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Stomp/StompRight/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,33 +129,447 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qno10")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer"]
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Stomp/StompRight/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmbtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Stomp/StompRight/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Icon" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
-position = Vector2(245, 80)
-texture = ExtResource("1_6kmqj")
+[node name="Boot" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(258, 190)
+texture = ExtResource("4_2vfhu")
+region_enabled = true
+region_rect = Rect2(0, 697.99, 255, 381.01)
 
-[node name="Icon2" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
-position = Vector2(247, 220)
-texture = ExtResource("1_6kmqj")
+[node name="Laser" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Icon3" type="Sprite2D" parent="VBoxContainer/TabBar/Stomp/StompRight/Panel/MarginContainer/VBoxContainer"]
-position = Vector2(247, 369)
-texture = ExtResource("1_6kmqj")
+[node name="LaserLeft" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Laser"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ime2e")
+text = "Laser"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Right-Click a green turret to begin aiming. (multiple can be aiming at the same time)
+
+Left-Click to fire"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "10 Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Cooldown" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "3 Second Cooldown"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LaserRight" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Laser"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmbtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LaserReady" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(133.818, 226.299)
+scale = Vector2(1.80951, 1.8209)
+texture = ExtResource("6_2vfhu")
+
+[node name="LaserCooldown" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(355, 228)
+scale = Vector2(1.79148, 1.79148)
+texture = ExtResource("11_gbm7a")
+
+[node name="LaserBase" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(133.409, 281)
+scale = Vector2(1.80951, 1.8209)
+texture = ExtResource("5_0cvog")
+
+[node name="LaserBase2" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Laser/LaserRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(354.409, 282)
+scale = Vector2(1.80951, 1.8209)
+texture = ExtResource("5_0cvog")
+
+[node name="Flies" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="FliesLeft" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Flies"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ime2e")
+text = "F.L.I.E.S."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Summons up to 3 F.L.I.E.S., 1 every second. F.L.I.E.S. seek out and attack enemies."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "2 Damage Per F.L.I.E.S."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FliesRight" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Flies"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmbtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FliesMachine" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+position = Vector2(277, 270)
+scale = Vector2(1.69922, 1.69922)
+texture = ExtResource("5_u4ds3")
+
+[node name="Fly" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+position = Vector2(199, 175)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("6_gdees")
+
+[node name="Fly2" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+position = Vector2(276, 143)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("6_gdees")
+
+[node name="Fly3" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Flies/FliesRight/Panel/MarginContainer"]
+position = Vector2(351, 176)
+scale = Vector2(1.53125, 1.53125)
+texture = ExtResource("6_gdees")
+
+[node name="Termite" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="TermiteLeft" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Termite"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ime2e")
+text = "Termite"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "The basic enemy. Moves toward your tree and attacks it when in reach."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Hp" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "3 Hp"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "1 Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TermiteRight" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Termite"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteRight"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteRight/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteRight/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmbtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteRight/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TermiteW1" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteRight/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(256, 214)
+scale = Vector2(3.07031, 3.07031)
+texture = ExtResource("5_jfbcy")
+
+[node name="TermiCopter" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="TermiCopterLeft" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ime2e")
+text = "TermiCopter"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Body" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Flies toward your tree and fires bullets at it."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Hp" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "20 Hp"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "2 Damage per bullet"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TermiCopterRight" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterRight"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterRight/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qno10")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterRight/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tmbtd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterRight/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterRight/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_tmbtd")
+stretch_mode = 5
 
 [node name="FlipPageButtons" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PrevPage" type="Button" parent="VBoxContainer/FlipPageButtons"]
+[node name="PrevPage" type="TextureButton" parent="VBoxContainer/FlipPageButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
-icon = ExtResource("1_6kmqj")
+size_flags_horizontal = 2
+texture_normal = ExtResource("13_gbm7a")
+texture_pressed = ExtResource("13_gbm7a")
+texture_hover = ExtResource("13_5l28t")
+flip_h = true
 
-[node name="NextPage" type="Button" parent="VBoxContainer/FlipPageButtons"]
+[node name="NextPage" type="TextureButton" parent="VBoxContainer/FlipPageButtons"]
 layout_mode = 2
-size_flags_horizontal = 3
-icon = ExtResource("1_6kmqj")
-icon_alignment = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("13_gbm7a")
+texture_pressed = ExtResource("13_gbm7a")
+texture_hover = ExtResource("13_5l28t")
+
+[connection signal="pressed" from="VBoxContainer/FlipPageButtons/PrevPage" to="." method="_on_prev_page_pressed"]
+[connection signal="pressed" from="VBoxContainer/FlipPageButtons/NextPage" to="." method="_on_next_page_pressed"]

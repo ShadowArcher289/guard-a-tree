@@ -8,6 +8,7 @@ var bullet_spawn_anchor = bullet_spawn_anchor_right;
 @onready var bullet_spawn_anchor_right: Node2D = $Sprite2D/BulletSpawnAnchorRight
 
 @onready var shooting_timer: Timer = $ShootingTimer
+@onready var move_cycle_timer: Timer = $MoveCycleTimer
 
 var target_ray = target_ray_right;
 @onready var target_ray_left: RayCast2D = $Sprite2D/TargetRayLeft
@@ -72,7 +73,6 @@ func _process(delta: float) -> void:
 		target_ray = target_ray_right;
 		collision_shape_2d.position.x = 24.0;
 
-		
 	
 	if moving:
 		move(delta);
@@ -92,6 +92,7 @@ func _process(delta: float) -> void:
 			if !shooting:
 				shooting = true;
 				shooting_timer.start(SHOOTINGCYCLETIME);
+				#move_cycle_timer.start(randf_range(2, 5)); # begins a timer for random mini movements. 
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
@@ -123,3 +124,18 @@ func _on_shooting_timer_timeout() -> void:
 	for i in 5: # shoot i number of bullets per cycle
 		spawn_bullet(Globals.BULLETVELOCITY * directionX); # bullet has velocity and direction
 		await get_tree().create_timer(0.1).timeout;
+
+
+func _on_move_cycle_timer_timeout() -> void: # move around a bit
+	for i in 30:
+		if global_position.y < 469.0: # to not go below a y level
+			velocity = (Vector2(randf_range(-1, 1), randf_range(-1, 1)) * speed);
+			move_and_slide();
+			await get_tree().create_timer(randf_range(2,4));
+			velocity = Vector2(0, 0);
+		else:
+			velocity = Vector2(randf_range(-20, 20), randf_range(30, 40)) * speed;
+			move_and_slide();
+			await get_tree().create_timer(randf_range(2,4));
+			velocity = Vector2(0, 0);
+		
