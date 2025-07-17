@@ -6,7 +6,7 @@ var treeName = "Name" # the beautiful name the player gave the tree.
 const GRAVITY = 9.8;
 var game_mode : String = "tutorial" # the default game mode is tutorial
 const PLAYER_STARTING_LEAVES := 20; # the currency for unlocking new weapons
-var player_leaves : int = PLAYER_STARTING_LEAVES;
+var player_leaf_count : int = PLAYER_STARTING_LEAVES;
 
 #Tree
 const MAXHP = 100; # Hp

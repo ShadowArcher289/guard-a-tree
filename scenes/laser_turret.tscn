@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://4yx14a34ap3g"]
+[gd_scene load_steps=10 format=3 uid="uid://4yx14a34ap3g"]
 
 [ext_resource type="Script" uid="uid://crpfe7yqaxey1" path="res://scripts/laser_turret.gd" id="1_a5lw2"]
 [ext_resource type="Texture2D" uid="uid://c3armtvorsm0y" path="res://sprites/LaserCooldown.png" id="1_iti7k"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://v28egy1t386e" path="res://sprites/LaserBase.png" id="3_u1x4h"]
 [ext_resource type="Texture2D" uid="uid://b02rpgrvrvnmj" path="res://sprites/Laser_Beam.png" id="5_mvsyt"]
 [ext_resource type="Texture2D" uid="uid://bvds2lcwat3bb" path="res://sprites/Laser_Ball.png" id="5_u1x4h"]
+[ext_resource type="PackedScene" uid="uid://i6xl0g841o4v" path="res://scenes/locked_weapon.tscn" id="7_opsk6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a5lw2"]
 animations = [{
@@ -78,6 +79,10 @@ offset_right = 27.0
 offset_bottom = -15.0
 button_mask = 2
 flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="LockedWeapon" parent="." instance=ExtResource("7_opsk6")]
+position = Vector2(0, 2)
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Turret/LaserBeam/Hurtbox" to="." method="_on_hurt_box_body_entered"]

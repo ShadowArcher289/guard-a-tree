@@ -1,10 +1,13 @@
 extends Node2D
 
-@onready var hp_bar: TextureProgressBar = $HpBar
-@onready var kitbook: Control = $CanvasLayer/Kitbook
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var termite_spawn_timer: Timer = $TermiteSpawnTimer
+
+@onready var hp_bar: TextureProgressBar = $HpBar
+@onready var leaf_count_label: Label = $Leaves/LeafCountLabel
+@onready var kitbook: Control = $CanvasLayer/Kitbook
 
 @onready var termite_spawner_1: Node2D = $TermiteSpawner1
 @onready var termite_spawner_2: Node2D = $TermiteSpawner2
@@ -35,18 +38,29 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	hp_bar.value = Globals.currHp; # Temporary HP display.
+	leaf_count_label.text = str(Globals.player_leaf_count);
 	
 	if hp_bar.value <= 0:
 		print("GAME OVER");
 		get_tree().paused = true;
 
-func tutorial(id : int):
+func tutorial(id : String):
 	match id:
-		0:
-			termite_spawner_1.spawn();
-			kitbook.change_page_to(id);
+		"stomp": # Stomp
+			kitbook.change_page_to(0);
 			await !kitbook.is_visible_in_tree();
-			
+			for i in 20: # spawn 20 termites
+				var spawn = randi_range(1, 2);
+				if spawn == 1:
+					termite_spawner_1.spawn();
+				else:
+					termite_spawner_2.spawn();
+				termite_spawn_timer.start(randi_range(0.2, 1))
+				await termite_spawn_timer.timeout;
+		"lasers": # Lasers # leaves & unlocking stuff
+			pass;
+		"flies": # FLIES
+			pass;
 			
 
 func reset():

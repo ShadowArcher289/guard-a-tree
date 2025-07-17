@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cpl1hoahnr1l2"]
+[gd_scene load_steps=20 format=3 uid="uid://cpl1hoahnr1l2"]
 
 [ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
 [ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://1i64tom0r740" path="res://sprites/OpenKitbookIconSelected.png" id="14_ca42v"]
 [ext_resource type="Texture2D" uid="uid://bfugb62al3ijv" path="res://sprites/OpenKitbookIconDarkened.png" id="14_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dw3tn24lhtgf4" path="res://scenes/flies_machine.tscn" id="16_ca42v"]
+[ext_resource type="Texture2D" uid="uid://dek7kn8nb3i6v" path="res://sprites/Leaf.png" id="16_rysoc"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
 [ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="17_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
@@ -189,10 +190,11 @@ spawnerType = "termi_copter"
 
 [node name="HpBar" type="TextureProgressBar" parent="."]
 z_index = 5
-offset_left = 77.0
+offset_left = 133.0
 offset_top = 22.0
-offset_right = 1077.0
+offset_right = 1133.0
 offset_bottom = 86.0
+scale = Vector2(0.9, 0.9)
 rounded = true
 texture_under = ExtResource("13_trtic")
 texture_progress = ExtResource("6_ca42v")
@@ -210,10 +212,10 @@ z_index = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -93.0
-offset_top = 13.0
-offset_right = -1.0
-offset_bottom = 105.0
+offset_left = -115.0
+offset_top = 16.0
+offset_right = -23.0
+offset_bottom = 108.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 toggle_mode = true
@@ -258,5 +260,24 @@ position = Vector2(996, 624)
 [node name="Boot" parent="Weapons" instance=ExtResource("18_264po")]
 z_index = 1
 position = Vector2(1715, -176)
+
+[node name="TermiteSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Leaves" type="Node" parent="."]
+
+[node name="Leaf" type="Sprite2D" parent="Leaves"]
+position = Vector2(53, 50)
+texture = ExtResource("16_rysoc")
+
+[node name="LeafCountLabel" type="Label" parent="Leaves"]
+offset_left = 88.0
+offset_top = 28.0
+offset_right = 129.0
+offset_bottom = 70.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "32"
+vertical_alignment = 1
 
 [connection signal="toggled" from="CanvasLayer/ToggleKitbookButton" to="." method="_on_toggle_kitbook_button_toggled"]
