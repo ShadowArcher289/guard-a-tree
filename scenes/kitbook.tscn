@@ -308,7 +308,7 @@ autowrap_mode = 3
 [node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_qno10")
-text = "Unlock: 25 Leaves"
+text = "Unlock: 20 Leaves"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -643,7 +643,7 @@ autowrap_mode = 3
 [node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_qno10")
-text = "Drops 10 Leaves"
+text = "Drops 8 Leaves"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

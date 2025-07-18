@@ -83,7 +83,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LockedWeapon" parent="." instance=ExtResource("7_opsk6")]
 position = Vector2(0, 2)
-price = 25
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Turret/LaserBeam/Hurtbox" to="." method="_on_hurt_box_body_entered"]

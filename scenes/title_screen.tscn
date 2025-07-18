@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddvjjahe7lgyu"]
+[gd_scene load_steps=13 format=3 uid="uid://ddvjjahe7lgyu"]
 
 [ext_resource type="Script" uid="uid://2wsnrgnrg2g7" path="res://scripts/title_screen.gd" id="1_sa3yf"]
 [ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="2_s4lrb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://brl6hwgnxhjpa" path="res://sprites/RainbowSeedSelected.png" id="5_e54dn"]
 [ext_resource type="Texture2D" uid="uid://cm07kbrb4eghk" path="res://sprites/GhostCursor.png" id="6_e54dn"]
 [ext_resource type="Texture2D" uid="uid://dq04503qkurlq" path="res://sprites/Quotes.png" id="7_3yumr"]
+[ext_resource type="Texture2D" uid="uid://dq1t5v5tb2q6f" path="res://sprites/GuardATree.png" id="8_cs5ya"]
 
 [sub_resource type="Animation" id="Animation_e54dn"]
 length = 0.001
@@ -130,11 +131,16 @@ offset_right = 1291.0
 offset_bottom = 740.0
 color = Color(0, 0, 0, 1)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_3yumr")
+}
+
 [node name="TutorialButton" type="TextureButton" parent="."]
 offset_left = 372.0
-offset_top = 261.0
+offset_top = 402.0
 offset_right = 492.0
-offset_bottom = 381.0
+offset_bottom = 522.0
 texture_normal = ExtResource("2_s4lrb")
 texture_pressed = ExtResource("2_s4lrb")
 texture_hover = ExtResource("3_dc4i4")
@@ -142,9 +148,9 @@ stretch_mode = 5
 
 [node name="EndlessButton" type="TextureButton" parent="."]
 offset_left = 695.0
-offset_top = 263.0
+offset_top = 404.0
 offset_right = 815.0
-offset_bottom = 383.0
+offset_bottom = 524.0
 texture_normal = ExtResource("3_s4lrb")
 texture_pressed = ExtResource("3_s4lrb")
 texture_hover = ExtResource("5_e54dn")
@@ -152,22 +158,17 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 offset_left = 400.0
-offset_top = 376.0
+offset_top = 517.0
 offset_right = 461.0
-offset_bottom = 399.0
+offset_bottom = 540.0
 text = "Tutorial"
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 728.0
-offset_top = 376.0
+offset_top = 517.0
 offset_right = 787.0
-offset_bottom = 399.0
+offset_bottom = 540.0
 text = "Endless"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3yumr")
-}
 
 [node name="Seed" type="Sprite2D" parent="."]
 position = Vector2(432, 321)
@@ -178,22 +179,27 @@ position = Vector2(755, 321)
 texture = ExtResource("3_s4lrb")
 
 [node name="GhostCursor" type="Sprite2D" parent="."]
-position = Vector2(468, 359)
+position = Vector2(468, 500)
 rotation = -0.000370309
 scale = Vector2(0.625, 0.625)
 texture = ExtResource("6_e54dn")
 
 [node name="Quotes" type="Sprite2D" parent="."]
-position = Vector2(405, 352)
+position = Vector2(405, 493)
 rotation = -0.442746
 texture = ExtResource("7_3yumr")
 flip_v = true
 
 [node name="Quotes2" type="Sprite2D" parent="."]
-position = Vector2(457, 288)
+position = Vector2(457, 429)
 rotation = -3.5195
 texture = ExtResource("7_3yumr")
 flip_v = true
+
+[node name="GuardATree" type="Sprite2D" parent="."]
+position = Vector2(606, 224)
+scale = Vector2(1.07031, 1.07031)
+texture = ExtResource("8_cs5ya")
 
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="EndlessButton" to="." method="_on_endless_button_pressed"]

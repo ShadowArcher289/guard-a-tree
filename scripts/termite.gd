@@ -58,7 +58,7 @@ func attack():
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
-	print("TermiteHp" + str(hp))
+	#print("TermiteHp" + str(hp))
 
 func kick_the_bucket(): # this termite no longer lives. R.I.P.
 	Globals.enemyCount -= 1;

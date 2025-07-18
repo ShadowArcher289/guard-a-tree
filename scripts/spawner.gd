@@ -17,6 +17,7 @@ func spawn() -> void:
 			entity.show();
 			entity.velocity = Vector2(0, 0);
 			entity.position = self.position;
+			entity.z_index += 1;
 			game.add_child.call_deferred(entity); # adds the enity to game
 		"termi_copter":
 			#print_debug("Summoned termi_copter")
@@ -24,6 +25,7 @@ func spawn() -> void:
 			entity.show();
 			entity.velocity = Vector2(0, 0);
 			entity.position = self.position;
+			entity.z_index += 1;
 			game.add_child.call_deferred(entity); # adds the enity to game
 		"tree":
 			#print_debug("Summoned tree")

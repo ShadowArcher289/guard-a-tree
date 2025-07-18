@@ -1,10 +1,13 @@
 extends Node2D
 
 signal treeNameSet;
+signal tutorialCompleted;
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var seed: Sprite2D = $Seed
+@onready var game_over: Control = $CanvasLayer/GameOver
+
 const BASICSEEDTEXTURE = preload("res://sprites/Seed.png");
 const RAINBOWSEEDTEXTURE = preload("res://sprites/RainbowSeed.png");
 
@@ -26,6 +29,8 @@ const RAINBOWSEEDTEXTURE = preload("res://sprites/RainbowSeed.png");
 @onready var set_tree_name_card: Sprite2D = $SetTreeNameCard
 @onready var text_edit: TextEdit = $SetTreeNameCard/TextEdit
 @onready var confirm_btn: Button = $SetTreeNameCard/ConfirmBtn
+@onready var end_of_tutorial_card: Sprite2D = $EndOfTutorialCard
+@onready var continue_btn: Button = $EndOfTutorialCard/ContinueBtn
 
 
 func _ready() -> void:
@@ -33,6 +38,7 @@ func _ready() -> void:
 	hp_bar.max_value = Globals.MAXHP;
 	hp_bar.hide();
 	set_tree_name_card.hide();
+	end_of_tutorial_card.hide();
 	
 	if Globals.game_mode == "tutorial": 	#start animations and different game modes
 		seed.texture = BASICSEEDTEXTURE;
@@ -42,7 +48,7 @@ func _ready() -> void:
 		tree_spawner.spawn();
 		hp_bar.show();
 		termite_spawner_1.spawn();
-		set_tree_name();
+		set_tree_name(); # set the tree name
 		set_tree_name_card.show();
 		await treeNameSet;
 		termite_spawner_1.spawn();
@@ -72,8 +78,9 @@ func _process(delta: float) -> void:
 	hp_bar.value = Globals.currHp; # Temporary HP display.
 	leaf_count_label.text = str(Globals.player_leaf_count);
 	
-	if hp_bar.value <= 0:
+	if Globals.currHp <= 0:
 		print("GAME OVER");
+		game_over.show();
 		get_tree().paused = true;
 
 
@@ -86,6 +93,14 @@ func set_tree_name() -> void: # prompts the player to set a name for the tree
 	get_tree().paused = false;
 	tree_name_label.text = Globals.treeName;
 	treeNameSet.emit();
+
+func end_of_tutorial() -> void:
+	get_tree().paused = true;
+	end_of_tutorial_card.show();
+	await continue_btn.pressed;
+	end_of_tutorial_card.hide();
+	get_tree().paused = false;
+	tutorialCompleted.emit();
 
 
 func tutorial(id : String):
@@ -113,7 +128,7 @@ func tutorial(id : String):
 			kitbook.change_page_to(2);
 			toggle_kitbook_button.button_pressed = true;
 			await toggle_kitbook_button.toggled;
-			for i in 10: # spawn 10 termiCopters
+			for i in 3: # spawn 10 termiCopters
 				var spawn = randi_range(1, 2);
 				if spawn == 1:
 					termi_copter_spawner_1.position.y += randf_range(-50, 200);
@@ -133,7 +148,7 @@ func tutorial(id : String):
 			toggle_kitbook_button.button_pressed = true;
 			await toggle_kitbook_button.toggled;
 			Globals.player_leaf_count += 30; # some leaves to ensure it can be unlocked
-			for i in 20: # spawn a mix
+			for i in 15: # spawn some termites to at least get a laser
 				var spawn = randi_range(1, 4);
 				if spawn == 1:
 					termite_spawner_1.spawn();
@@ -149,8 +164,30 @@ func tutorial(id : String):
 					termi_copter_spawner_2.position.y = 190;
 				termi_copter_spawn_timer.start(randi_range(1, 4));
 				await termi_copter_spawn_timer.timeout || termite_spawn_timer.timeout;
+			end_of_tutorial(); # end of tutorial card
+			await tutorialCompleted;
+			while Globals.currHp >= 0: # infenitaley spawn a mix of enemies
+				var spawn = randi_range(1, 4);
+				if spawn == 1:
+					termite_spawner_1.spawn();
+				elif spawn == 2:
+					termite_spawner_2.spawn();
+				elif spawn == 3:
+					termi_copter_spawner_1.position.y += randf_range(-50, 200);
+					termi_copter_spawner_1.spawn();
+					termi_copter_spawner_1.position.y = 204;
+				elif spawn == 4:
+					termi_copter_spawner_2.position.y += randf_range(-50, 200);
+					termi_copter_spawner_2.spawn();
+					termi_copter_spawner_2.position.y = 190;
+				termi_copter_spawn_timer.start(randf_range(0.2, 2));
+				if !termite_spawn_timer.is_stopped():
+					await termite_spawn_timer.timeout;
+				elif !termi_copter_spawn_timer.is_stopped():
+					await termi_copter_spawn_timer.timeout;
 
 func run_endless() -> void: # spawn enemies for endless mode
+	print("run endless")
 	for i in 25: # spawn some termites to at least get a laser
 		var spawn = randi_range(1, 2);
 		if spawn == 1:
@@ -159,7 +196,7 @@ func run_endless() -> void: # spawn enemies for endless mode
 			termite_spawner_2.spawn();
 		termite_spawn_timer.start(randf_range(0.2, 0.5))
 		await termite_spawn_timer.timeout;
-	while hp_bar.value >= 0: # infenitaley spawn enemies
+	while Globals.currHp >= 0: # infenitaley spawn enemies
 		var spawn = randi_range(1, 6);
 		if spawn == 1 || spawn == 3:
 			termite_spawner_1.spawn();
@@ -177,8 +214,12 @@ func run_endless() -> void: # spawn enemies for endless mode
 			termi_copter_spawner_2.spawn();
 			termi_copter_spawner_2.position.y = 190;
 			termi_copter_spawn_timer.start(randf_range(1, 3));
-		await termi_copter_spawn_timer.timeout || termite_spawn_timer.timeout;
-
+		if !termite_spawn_timer.is_stopped():
+			await termite_spawn_timer.timeout;
+		elif !termi_copter_spawn_timer.is_stopped():
+			await termi_copter_spawn_timer.timeout;
+		print(Globals.currHp)
+	print("stopped")
 func reset():
 	TransitionManager.change_scene_to("res://scenes/title_screen.tscn", "Fade_To_Black");
 	get_tree().paused = false;

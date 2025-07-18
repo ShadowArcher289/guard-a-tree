@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
-	print("CopterHp" + str(hp));
+	#print("CopterHp" + str(hp));
 
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.
 	Globals.enemyCount -= 1;
