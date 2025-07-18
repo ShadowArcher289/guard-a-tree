@@ -20,6 +20,7 @@
 bg_color = Color(0.20889, 0.646973, 0.854152, 1)
 
 [node name="Kitbook" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,12 +53,11 @@ process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 tabs_visible = false
 tab_focus_mode = 0
 
 [node name="Stomp" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -146,6 +146,7 @@ region_enabled = true
 region_rect = Rect2(0, 697.99, 255, 381.01)
 
 [node name="Unlocks" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -231,6 +232,28 @@ position = Vector2(250.809, 284.239)
 scale = Vector2(1.80951, 1.8209)
 texture = ExtResource("5_0cvog")
 
+[node name="LockedWeapon" type="Node2D" parent="VBoxContainer/KitbookTabContainer/Unlocks/UnlocksR/Panel/MarginContainer/VBoxContainer"]
+position = Vector2(-618, -40)
+
+[node name="Leaf" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Unlocks/UnlocksR/Panel/MarginContainer/VBoxContainer/LockedWeapon"]
+position = Vector2(841, 349)
+texture = ExtResource("15_pwwl8")
+
+[node name="LeafCountLabel" type="Label" parent="VBoxContainer/KitbookTabContainer/Unlocks/UnlocksR/Panel/MarginContainer/VBoxContainer/LockedWeapon"]
+offset_left = 876.0
+offset_top = 327.0
+offset_right = 917.0
+offset_bottom = 369.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "20"
+vertical_alignment = 1
+
+[node name="Lock" type="Sprite2D" parent="VBoxContainer/KitbookTabContainer/Unlocks/UnlocksR/Panel/MarginContainer/VBoxContainer/LockedWeapon"]
+position = Vector2(871, 268)
+scale = Vector2(1.67969, 1.67969)
+texture = ExtResource("14_5l28t")
+
 [node name="Laser" type="HBoxContainer" parent="VBoxContainer/KitbookTabContainer"]
 visible = false
 layout_mode = 2
@@ -278,6 +301,14 @@ theme = ExtResource("1_qno10")
 text = "Right-Click a green turret to begin aiming. (multiple can be aiming at the same time)
 
 Left-Click to fire"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/Laser/LaserLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Unlock: 25 Leaves"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -393,6 +424,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Unlock: 35 Leaves"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Dmg" type="Label" parent="VBoxContainer/KitbookTabContainer/Flies/FliesLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_qno10")
@@ -496,6 +535,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Drops 1 Leaf"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Hp" type="Label" parent="VBoxContainer/KitbookTabContainer/Termite/TermiteLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_qno10")
@@ -593,6 +640,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="Cost" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_qno10")
+text = "Drops 10 Leaves"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="Hp" type="Label" parent="VBoxContainer/KitbookTabContainer/TermiCopter/TermiCopterLeft/Panel/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_qno10")
@@ -659,27 +714,6 @@ size_flags_horizontal = 10
 texture_normal = ExtResource("13_gbm7a")
 texture_pressed = ExtResource("13_gbm7a")
 texture_hover = ExtResource("13_5l28t")
-
-[node name="LockedWeapon" type="Node2D" parent="."]
-
-[node name="Lock" type="Sprite2D" parent="LockedWeapon"]
-position = Vector2(871, 268)
-scale = Vector2(1.67969, 1.67969)
-texture = ExtResource("14_5l28t")
-
-[node name="Leaf" type="Sprite2D" parent="LockedWeapon"]
-position = Vector2(841, 349)
-texture = ExtResource("15_pwwl8")
-
-[node name="LeafCountLabel" type="Label" parent="LockedWeapon"]
-offset_left = 876.0
-offset_top = 327.0
-offset_right = 917.0
-offset_bottom = 369.0
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 30
-text = "20"
-vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/FlipPageButtons/PrevPage" to="." method="_on_prev_page_pressed"]
 [connection signal="pressed" from="VBoxContainer/FlipPageButtons/NextPage" to="." method="_on_next_page_pressed"]

@@ -5,8 +5,15 @@ var treeName = "Name" # the beautiful name the player gave the tree.
 #Game
 const GRAVITY = 9.8;
 var game_mode : String = "tutorial" # the default game mode is tutorial
-const PLAYER_STARTING_LEAVES := 20; # the currency for unlocking new weapons
+const PLAYER_STARTING_LEAVES := 0; # the currency for unlocking new weapons
 var player_leaf_count : int = PLAYER_STARTING_LEAVES;
+signal weaponUnlocked;
+var enemyCount : int = 0; # holds the current number of enemies in the game.
+signal enemiesCleared # emitted if no enemies are on the field
+
+func _process(delta: float) -> void:
+	if enemyCount <= 0:
+		enemiesCleared.emit();
 
 #Tree
 const MAXHP = 100; # Hp
@@ -27,9 +34,11 @@ const FLIESSPEED = 300;
 const TERMITEMAXHP = 3;
 const AVGTERMITESPEED = 80.0; # termite 
 const TERMITEATK = 1;
+const TERMITELEAFCOUNT = 1;
 
 const TERMICOPTERMAXHP = 20;
 const AVGTERMICOPTERSPEED = 200.0; # TermiCopter
-const SHOOTINGCYCLETIME = 3; # seconds
+const SHOOTINGCYCLETIME = 2.5; # seconds
 const BULLETVELOCITY = 400;
 const BULLETDMG = 2;
+const TERMICOPTERLEAFCOUNT = 5;

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cb14dpt3gne6i" path="res://scripts/boot.gd" id="1_n61mk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ypks"]
-size = Vector2(200, 1115)
+size = Vector2(163, 1115)
 
 [node name="Boot" type="Node2D"]
 script = ExtResource("1_n61mk")
@@ -19,7 +19,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(8, -16.5)
+position = Vector2(11.5, -16.5)
 shape = SubResource("RectangleShape2D_6ypks")
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

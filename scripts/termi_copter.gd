@@ -35,6 +35,7 @@ enum weaponState {
 }
 
 func _ready() -> void:
+	Globals.enemyCount += 1;
 	moving = true;
 	target_ray_left.target_position.x *= randf_range(0.6, 1); # Copters have slightly different ranges 
 	target_ray_right.target_position.x *= randf_range(0.6, 1); # Copters have slightly different ranges 
@@ -99,6 +100,8 @@ func is_attacked(dmgTaken : int):
 	print("CopterHp" + str(hp));
 
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.
+	Globals.enemyCount -= 1;
+	Globals.player_leaf_count += Globals.TERMICOPTERLEAFCOUNT;
 	queue_free();
 
 func spawn_bullet(velo : float) -> void:
@@ -131,11 +134,11 @@ func _on_move_cycle_timer_timeout() -> void: # move around a bit
 		if global_position.y < 469.0: # to not go below a y level
 			velocity = (Vector2(randf_range(-1, 1), randf_range(-1, 1)) * speed);
 			move_and_slide();
-			await get_tree().create_timer(randf_range(2,4));
+			await get_tree().create_timer(randf_range(2,4)).timeout;
 			velocity = Vector2(0, 0);
 		else:
 			velocity = Vector2(randf_range(-20, 20), randf_range(30, 40)) * speed;
 			move_and_slide();
-			await get_tree().create_timer(randf_range(2,4));
+			await get_tree().create_timer(randf_range(2,4)).timeout;
 			velocity = Vector2(0, 0);
 		

@@ -4,8 +4,11 @@ extends Node2D
 
 @onready var leaf_count_label: Label = $LeafCountLabel
 
+@onready var button: Button = $Button
+
 func _ready() -> void:
 	self.show();
+	button.focus_mode = Control.FOCUS_NONE;
 	leaf_count_label.text = str(price);
 
 #func _process(delta: float) -> void:
@@ -15,4 +18,5 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	if Globals.player_leaf_count >= price:
 		Globals.player_leaf_count -= price;
+		Globals.weaponUnlocked.emit();
 		self.hide();

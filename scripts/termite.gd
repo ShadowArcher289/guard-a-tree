@@ -16,6 +16,7 @@ const ATK = Globals.TERMITEATK;
 
 func _ready() -> void:
 	moving = true;
+	Globals.enemyCount += 1;
 
 
 func _process(delta: float) -> void:
@@ -60,6 +61,8 @@ func is_attacked(dmgTaken : int):
 	print("TermiteHp" + str(hp))
 
 func kick_the_bucket(): # this termite no longer lives. R.I.P.
+	Globals.enemyCount -= 1;
+	Globals.player_leaf_count += Globals.TERMITELEAFCOUNT;
 	queue_free();
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

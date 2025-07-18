@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cpl1hoahnr1l2"]
+[gd_scene load_steps=21 format=3 uid="uid://cpl1hoahnr1l2"]
 
 [ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
 [ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
-[ext_resource type="PackedScene" uid="uid://b5oi7xhubi40g" path="res://scenes/tree.tscn" id="4_1kice"]
 [ext_resource type="Texture2D" uid="uid://cxbuqkaoam6f0" path="res://sprites/HPBarFilling.png" id="6_ca42v"]
 [ext_resource type="PackedScene" uid="uid://w2ej12ndkpyd" path="res://scenes/kitbook.tscn" id="12_dinhu"]
 [ext_resource type="Texture2D" uid="uid://cp8k6h6wxm3pe" path="res://sprites/OpenKitbookIcon.png" id="13_ir15t"]
@@ -11,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bfugb62al3ijv" path="res://sprites/OpenKitbookIconDarkened.png" id="14_ir15t"]
 [ext_resource type="PackedScene" uid="uid://dw3tn24lhtgf4" path="res://scenes/flies_machine.tscn" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://dek7kn8nb3i6v" path="res://sprites/Leaf.png" id="16_rysoc"]
+[ext_resource type="Texture2D" uid="uid://hplddjjlf4og" path="res://sprites/Namecard.png" id="16_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
 [ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="17_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
@@ -119,9 +119,61 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_ssvqc"]
+resource_name = "Start_Endless"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -755), Vector2(0, -755), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Seed:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(583, -890), Vector2(583, -423), Vector2(583, 650)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Seed:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.533333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.692896, 2.32478, 4.28304, 7.33038]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Seed:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ssvqc"]
 _data = {
 &"RESET": SubResource("Animation_rysoc"),
+&"Start_Endless": SubResource("Animation_ssvqc"),
 &"Start_Tutorial": SubResource("Animation_ca42v")
 }
 
@@ -228,9 +280,6 @@ stretch_mode = 5
 position = Vector2(581, 618)
 spawnerType = "tree"
 
-[node name="Tree" parent="." instance=ExtResource("4_1kice")]
-position = Vector2(580, 616)
-
 [node name="Weapons" type="Node" parent="."]
 
 [node name="Turrets" type="Node" parent="Weapons"]
@@ -264,6 +313,9 @@ position = Vector2(1715, -176)
 [node name="TermiteSpawnTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="TermiCopterSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Leaves" type="Node" parent="."]
 
 [node name="Leaf" type="Sprite2D" parent="Leaves"]
@@ -279,5 +331,35 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
 text = "32"
 vertical_alignment = 1
+
+[node name="TreeNameLabel" type="Label" parent="."]
+offset_left = 532.0
+offset_top = 613.0
+offset_right = 630.0
+offset_bottom = 648.0
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SetTreeNameCard" type="Sprite2D" parent="."]
+process_mode = 3
+z_index = 8
+position = Vector2(575, 321)
+texture = ExtResource("16_ssvqc")
+
+[node name="TextEdit" type="TextEdit" parent="SetTreeNameCard"]
+offset_left = -152.0
+offset_top = -34.0
+offset_right = 154.0
+offset_bottom = 62.0
+placeholder_text = "Name"
+
+[node name="ConfirmBtn" type="Button" parent="SetTreeNameCard"]
+offset_left = 93.0
+offset_top = 70.0
+offset_right = 164.0
+offset_bottom = 101.0
+text = "Confirm"
 
 [connection signal="toggled" from="CanvasLayer/ToggleKitbookButton" to="." method="_on_toggle_kitbook_button_toggled"]

@@ -15,6 +15,7 @@ func _ready() -> void:
 
 
 func change_page_to(page : int) -> void: # allows for other scripts to change the kitbook's page, ex. for the tutorial
+	show();
 	kitbook_tab_container.current_tab = page;
 
 func _on_prev_page_pressed() -> void: # switches to previous page

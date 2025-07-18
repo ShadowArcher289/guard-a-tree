@@ -12,21 +12,21 @@ func spawn() -> void:
 	var entity;
 	match spawnerType:
 		"termite":
-			print_debug("Summoned termite")
+			#print_debug("Summoned termite")
 			entity = TERMITE.instantiate();
 			entity.show();
 			entity.velocity = Vector2(0, 0);
 			entity.position = self.position;
 			game.add_child.call_deferred(entity); # adds the enity to game
 		"termi_copter":
-			print_debug("Summoned termi_copter")
+			#print_debug("Summoned termi_copter")
 			entity = TERMI_COPTER.instantiate();
 			entity.show();
 			entity.velocity = Vector2(0, 0);
 			entity.position = self.position;
 			game.add_child.call_deferred(entity); # adds the enity to game
 		"tree":
-			print_debug("Summoned tree")
+			#print_debug("Summoned tree")
 			entity = TREE.instantiate();
 			entity.show();
 			entity.position = self.position;

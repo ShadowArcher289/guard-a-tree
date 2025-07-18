@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw3tn24lhtgf4"]
+[gd_scene load_steps=7 format=3 uid="uid://dw3tn24lhtgf4"]
 
 [ext_resource type="Texture2D" uid="uid://cq7inf7udh14j" path="res://sprites/FLIESMachine.png" id="1_qreaw"]
 [ext_resource type="Script" uid="uid://c6lj2oymqq6h4" path="res://scripts/flies_machine.gd" id="1_r0ve2"]
+[ext_resource type="PackedScene" uid="uid://i6xl0g841o4v" path="res://scenes/locked_weapon.tscn" id="3_72b6k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0ve2"]
 
@@ -57,5 +58,9 @@ hit_from_inside = true
 position = Vector2(29, -80)
 target_position = Vector2(0, -24)
 hit_from_inside = true
+
+[node name="LockedWeapon" parent="." instance=ExtResource("3_72b6k")]
+position = Vector2(0, 8)
+price = 35
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
