@@ -2,6 +2,8 @@ extends Node2D
 
 signal treeNameSet;
 signal tutorialCompleted;
+@onready var kitbook_button_sound: AudioStreamPlayer = $CanvasLayer/KitbookButtonSound
+@onready var reset_button: Button = $CanvasLayer/ResetButton
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -34,11 +36,13 @@ const RAINBOWSEEDTEXTURE = preload("res://sprites/RainbowSeed.png");
 
 
 func _ready() -> void:
+	SoundManager.background_music.play();
 	#setting properties
 	hp_bar.max_value = Globals.MAXHP;
 	hp_bar.hide();
 	set_tree_name_card.hide();
 	end_of_tutorial_card.hide();
+	reset_button.hide();
 	
 	if Globals.game_mode == "tutorial": 	#start animations and different game modes
 		seed.texture = BASICSEEDTEXTURE;
@@ -88,6 +92,7 @@ func set_tree_name() -> void: # prompts the player to set a name for the tree
 	get_tree().paused = true;
 	set_tree_name_card.show();
 	await confirm_btn.pressed;
+	SoundManager.button_sfx.play();
 	set_tree_name_card.hide();
 	Globals.treeName = text_edit.text;
 	get_tree().paused = false;
@@ -98,6 +103,7 @@ func end_of_tutorial() -> void:
 	get_tree().paused = true;
 	end_of_tutorial_card.show();
 	await continue_btn.pressed;
+	SoundManager.button_sfx.play();
 	end_of_tutorial_card.hide();
 	get_tree().paused = false;
 	tutorialCompleted.emit();
@@ -227,7 +233,16 @@ func reset():
 func _on_toggle_kitbook_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		kitbook.show();
+		reset_button.show();
 		get_tree().paused = true;
 	elif !toggled_on:
 		kitbook.hide();
+		reset_button.hide();
 		get_tree().paused = false;
+	SoundManager.kitbook_button_sound.play();
+
+
+func _on_reset_button_pressed() -> void:
+	Globals.currHp = 0;
+	toggle_kitbook_button.button_pressed = false;
+	kitbook.hide();

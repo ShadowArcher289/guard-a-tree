@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cpl1hoahnr1l2"]
+[gd_scene load_steps=23 format=3 uid="uid://cpl1hoahnr1l2"]
 
 [ext_resource type="Script" uid="uid://ceh0ree500o4x" path="res://scripts/game.gd" id="1_1kice"]
 [ext_resource type="Texture2D" uid="uid://bjsr4iucavdu1" path="res://sprites/Cloud.png" id="2_1kice"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://hplddjjlf4og" path="res://sprites/Namecard.png" id="16_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://b80102o80d8uc" path="res://scenes/ground.tscn" id="17_rysoc"]
 [ext_resource type="Texture2D" uid="uid://4etivflmosu6" path="res://sprites/Seed.png" id="17_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://c3ymsfjxpphwu" path="res://scenes/water_can.tscn" id="18_1kice"]
 [ext_resource type="PackedScene" uid="uid://bsxdj218sh5mw" path="res://scenes/boot.tscn" id="18_264po"]
 [ext_resource type="PackedScene" uid="uid://j4y3ddhxr3l3" path="res://scenes/spawner.tscn" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://4yx14a34ap3g" path="res://scenes/laser_turret.tscn" id="19_264po"]
@@ -291,7 +292,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ToggleKitbookButton" type="TextureButton" parent="CanvasLayer"]
 process_mode = 3
-z_index = 5
+z_index = 12
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -309,6 +310,15 @@ stretch_mode = 5
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource("15_rysoc")]
 visible = false
+
+[node name="ResetButton" type="Button" parent="CanvasLayer"]
+process_mode = 3
+z_index = 15
+offset_left = 32.0
+offset_top = 34.0
+offset_right = 83.0
+offset_bottom = 65.0
+text = "Reset"
 
 [node name="TreeSpawner" parent="." instance=ExtResource("18_ssvqc")]
 position = Vector2(581, 618)
@@ -398,4 +408,11 @@ offset_right = 152.0
 offset_bottom = 91.0
 text = "Continue"
 
+[node name="WaterCan" parent="." instance=ExtResource("18_1kice")]
+offset_left = 425.0
+offset_top = 510.0
+offset_right = 553.0
+offset_bottom = 638.0
+
 [connection signal="toggled" from="CanvasLayer/ToggleKitbookButton" to="." method="_on_toggle_kitbook_button_toggled"]
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]

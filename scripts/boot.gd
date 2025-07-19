@@ -35,6 +35,7 @@ func stomp(targetPos : Vector2) -> void: # appears at the x coordinate and stomp
 	position.x = targetPos.x;
 	stompTween.tween_property(self, "position", Vector2(targetPos.x, targetPos.y) , STOMPSPEED); # go down
 	#await position.y == targetPos.y
+	SoundManager.stomp.play();
 	await stompTween.finished;
 	#await get_tree().create_timer(0.1).timeout; # delay;
 	stompTween.kill();

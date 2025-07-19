@@ -9,6 +9,7 @@ func _process(delta: float) -> void:
 
 
 func _on_new_game_pressed() -> void:
+	SoundManager.button_sfx.play();
 	self.hide();
 	get_tree().paused = false;
 	Globals.player_leaf_count = Globals.PLAYER_STARTING_LEAVES;
@@ -17,6 +18,7 @@ func _on_new_game_pressed() -> void:
 
 
 func _on_retry_pressed() -> void:
+	SoundManager.button_sfx.play();
 	self.hide();
 	get_tree().paused = false;
 	Globals.player_leaf_count = Globals.PLAYER_STARTING_LEAVES;

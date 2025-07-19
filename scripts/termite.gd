@@ -63,6 +63,7 @@ func is_attacked(dmgTaken : int):
 func kick_the_bucket(): # this termite no longer lives. R.I.P.
 	Globals.enemyCount -= 1;
 	Globals.player_leaf_count += Globals.TERMITELEAFCOUNT;
+	SoundManager.termite_down.play();
 	queue_free();
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@onready var expression_icon: Sprite2D = $ExpressionIcon
+const SEARCHINGICON = preload("res://sprites/Huh.png");
+const LOCKEDONICON = preload("res://sprites/Woah.png");
+
 @onready var locate_target_ray_cast: RayCast2D = $LocateTargetRayCast
 var target : Node; # the fly's target
 var targetPosition : Vector2; # the position of the fly's target
@@ -8,6 +12,7 @@ var speed = Globals.FLIESSPEED;
 const FLIESDMG = Globals.FLIESDMG;
 var direction = 1;
 var rayRotationDirection = 1;
+
 
 enum State {
 	LOCKEDON,
@@ -39,6 +44,7 @@ func _process(delta: float) -> void:
 				change_state(State.SEARCHING);
 		State.SEARCHING:
 			velocity = Vector2(0, 0);
+			rotation_degrees = 0; # reset rotation when searching
 			if rayRotationDirection == 1: # continuously rotate ray cast to search for a target.
 				locate_target_ray_cast.rotation_degrees += 5; # rotate clockwise
 			else:
@@ -49,6 +55,14 @@ func _process(delta: float) -> void:
 				targetPosition = target.position;
 
 func change_state(next_state) -> void: # changes the state
+	if next_state == State.SEARCHING:
+		expression_icon.texture = SEARCHINGICON;
+		expression_icon.show();
+	elif next_state == State.LOCKEDON:
+		expression_icon.texture = LOCKEDONICON;
+		expression_icon.show();
+		await get_tree().create_timer(0.2).timeout;
+		expression_icon.hide();
 	current_state = next_state;
 
 

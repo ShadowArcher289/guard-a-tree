@@ -27,7 +27,7 @@ func _on_prev_page_pressed() -> void: # switches to previous page
 		print("prev page off")
 		print("cur page:" + str(kitbook_tab_container.current_tab))
 		kitbook_tab_container.current_tab -= 1;
-
+	SoundManager.button_sfx.play();
 
 func _on_next_page_pressed() -> void: # switches to next page
 	if (kitbook_tab_container.current_tab == maxTabCount): # if current page is last, then goes to first page.
@@ -38,3 +38,4 @@ func _on_next_page_pressed() -> void: # switches to next page
 		print("next page off")
 		print("cur page:" + str(kitbook_tab_container.current_tab))
 		kitbook_tab_container.current_tab += 1;
+	SoundManager.button_sfx.play();

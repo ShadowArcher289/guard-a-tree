@@ -87,6 +87,7 @@ func fire_laser() -> void: # fire laser script
 		laserTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN);
 	laserTween.tween_property(laser_ball, "scale", Vector2(1, 1), 0.5);
 	await laserTween.finished;
+	SoundManager.laser_fire.play();
 	camera_shake();
 	change_state(State.COOLDOWN);
 	laser_beam.show();

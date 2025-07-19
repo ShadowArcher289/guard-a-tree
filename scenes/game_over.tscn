@@ -47,20 +47,21 @@ vertical_alignment = 1
 [node name="NewGame" type="Button" parent="."]
 custom_minimum_size = Vector2(124, 0)
 layout_mode = 0
-offset_left = 418.0
-offset_top = 404.0
-offset_right = 542.0
-offset_bottom = 440.0
+offset_left = 526.0
+offset_top = 400.0
+offset_right = 650.0
+offset_bottom = 436.0
 theme = ExtResource("1_xeevv")
 text = "New Game"
 
 [node name="Retry" type="Button" parent="."]
+visible = false
 custom_minimum_size = Vector2(124, 0)
 layout_mode = 0
 offset_left = 612.0
-offset_top = 407.0
+offset_top = 404.0
 offset_right = 736.0
-offset_bottom = 443.0
+offset_bottom = 440.0
 theme = ExtResource("1_xeevv")
 text = "Retry"
 

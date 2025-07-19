@@ -19,4 +19,5 @@ func _on_button_pressed() -> void:
 	if Globals.player_leaf_count >= price:
 		Globals.player_leaf_count -= price;
 		Globals.weaponUnlocked.emit();
+		SoundManager.unlock_sfx.play();
 		self.hide();

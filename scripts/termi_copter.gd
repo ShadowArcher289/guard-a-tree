@@ -20,7 +20,8 @@ var target_ray = target_ray_right;
 var hp = Globals.TERMICOPTERMAXHP;
 var directionX = 1;
 var speed = Globals.AVGTERMICOPTERSPEED * randf_range(0.9, 1.1); # TermiCopters have slightly different speeds
-const SHOOTINGCYCLETIME = Globals.SHOOTINGCYCLETIME
+const SHOOTINGCYCLETIME = Globals.SHOOTINGCYCLETIME;
+const COPTERBULLETSPERCYCLE = Globals.COPTERBULLETSPERCYCLE;
 
 var movementTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT);
 
@@ -102,6 +103,7 @@ func is_attacked(dmgTaken : int):
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.
 	Globals.enemyCount -= 1;
 	Globals.player_leaf_count += Globals.TERMICOPTERLEAFCOUNT;
+	SoundManager.copter_down.play();
 	queue_free();
 
 func spawn_bullet(velo : float) -> void:
@@ -110,6 +112,7 @@ func spawn_bullet(velo : float) -> void:
 	bullet.show();
 	bullet.velo = velo;
 	bullet.rotation = sprite_2d.global_rotation;
+	SoundManager.bullet_fire.play();
 	game.add_child.call_deferred(bullet);
 
 func move(delta : float) -> void: # , targetPosition : Vector2
@@ -124,7 +127,7 @@ func move(delta : float) -> void: # , targetPosition : Vector2
 	move_and_slide();
 
 func _on_shooting_timer_timeout() -> void:
-	for i in 5: # shoot i number of bullets per cycle
+	for i in COPTERBULLETSPERCYCLE: # shoot i number of bullets per cycle
 		spawn_bullet(Globals.BULLETVELOCITY * directionX); # bullet has velocity and direction
 		await get_tree().create_timer(0.1).timeout;
 

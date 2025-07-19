@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3ymsfjxpphwu"]
+
+[ext_resource type="Texture2D" uid="uid://dcc4aslgs76c2" path="res://sprites/WaterCan.png" id="1_np54d"]
+[ext_resource type="Script" uid="uid://dxjgqipk82t10" path="res://scripts/water_can.gd" id="2_5wx5v"]
+[ext_resource type="Texture2D" uid="uid://dek7kn8nb3i6v" path="res://sprites/Leaf.png" id="2_e2av7"]
+
+[node name="WaterCan" type="TextureButton"]
+offset_left = -59.0
+offset_top = -116.0
+offset_right = 69.0
+offset_bottom = 12.0
+scale = Vector2(0.727001, 0.727001)
+pivot_offset = Vector2(59.1471, 115.543)
+button_mask = 3
+texture_normal = ExtResource("1_np54d")
+script = ExtResource("2_5wx5v")
+
+[node name="Leaf" type="Sprite2D" parent="."]
+position = Vector2(48.8995, 99.8996)
+scale = Vector2(0.434361, 0.434361)
+texture = ExtResource("2_e2av7")
+
+[node name="LeafCountLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.439982
+anchor_top = 0.888419
+anchor_right = 0.439982
+anchor_bottom = 0.888419
+offset_left = 5.0
+offset_top = -23.0
+offset_right = 46.0
+offset_bottom = 19.0
+scale = Vector2(0.46975, 0.46975)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "10"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="Leaf2" type="Sprite2D" parent="Node2D"]
+position = Vector2(42.4386, 21.2611)
+rotation = -0.491114
+scale = Vector2(0.434361, 0.434361)
+texture = ExtResource("2_e2av7")
+
+[node name="Leaf3" type="Sprite2D" parent="Node2D"]
+position = Vector2(76.8264, 3.37947)
+rotation = -0.107127
+scale = Vector2(0.434361, 0.434361)
+texture = ExtResource("2_e2av7")
+
+[node name="Leaf4" type="Sprite2D" parent="Node2D"]
+position = Vector2(50.6917, -7.62464)
+rotation = 1.384
+scale = Vector2(0.434361, 0.434361)
+texture = ExtResource("2_e2av7")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -201,5 +201,15 @@ position = Vector2(606, 224)
 scale = Vector2(1.07031, 1.07031)
 texture = ExtResource("8_cs5ya")
 
+[node name="Label3" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 618.0
+offset_right = 1122.0
+offset_bottom = 641.0
+theme_override_colors/font_color = Color(0.415686, 0.415686, 0.415686, 1)
+text = "Game and sprites done by ShadowArcher(me!) | All sounds were yoinked(with permission) from Brackys & FilmCow on itch.io"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="EndlessButton" to="." method="_on_endless_button_pressed"]
