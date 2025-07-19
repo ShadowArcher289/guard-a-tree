@@ -98,6 +98,7 @@ func _process(delta: float) -> void:
 
 func is_attacked(dmgTaken : int):
 	hp -= dmgTaken;
+	SoundManager.copter_hit.play();
 	#print("CopterHp" + str(hp));
 
 func kick_the_bucket(): # this TermiCopter no longer lives. R.I.P.

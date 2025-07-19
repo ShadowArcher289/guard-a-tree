@@ -16,3 +16,4 @@ extends Node2D
 @onready var bullet_fire: AudioStreamPlayer = $BulletFire
 @onready var copter_down: AudioStreamPlayer = $CopterDown
 @onready var termite_down: AudioStreamPlayer = $TermiteDown
+@onready var copter_hit: AudioStreamPlayer = $CopterHit

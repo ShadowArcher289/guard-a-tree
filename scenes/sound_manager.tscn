@@ -50,3 +50,7 @@ stream = ExtResource("9_k1d7a")
 
 [node name="GainHp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_55or6")
+
+[node name="CopterHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_aa63w")
+volume_db = -10.0
