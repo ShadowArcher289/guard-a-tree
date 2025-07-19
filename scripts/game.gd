@@ -202,6 +202,28 @@ func run_endless() -> void: # spawn enemies for endless mode
 			termite_spawner_2.spawn();
 		termite_spawn_timer.start(randf_range(0.2, 0.5))
 		await termite_spawn_timer.timeout;
+	for i in 3: # spawn 10 termiCopters
+				var spawn = randi_range(1, 2);
+				if spawn == 1:
+					termi_copter_spawner_1.position.y += randf_range(-50, 200);
+					termi_copter_spawner_1.spawn();
+					termi_copter_spawner_1.position.y = 204;
+				else:
+					termi_copter_spawner_2.position.y += randf_range(-50, 200);
+					termi_copter_spawner_2.spawn();
+					termi_copter_spawner_2.position.y = 190;
+	
+				termi_copter_spawn_timer.start(randf_range(1, 4))
+				await termi_copter_spawn_timer.timeout;
+	for i in 20: # spawn some termites to at least get a laser
+		var spawn = randi_range(1, 2);
+		if spawn == 1:
+			termite_spawner_1.spawn();
+		else:
+			termite_spawner_2.spawn();
+		termite_spawn_timer.start(randf_range(0.2, 0.5))
+		await termite_spawn_timer.timeout;
+	#await Globals.enemiesCleared;
 	while Globals.currHp >= 0: # infenitaley spawn enemies
 		var spawn = randi_range(1, 6);
 		if spawn == 1 || spawn == 3:

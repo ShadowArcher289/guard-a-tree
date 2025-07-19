@@ -300,6 +300,8 @@ layout_mode = 2
 theme = ExtResource("1_qno10")
 text = "Right-Click a green turret to begin aiming. (multiple can be aiming at the same time)
 
+Middle-Click to aim all ready turrets.
+
 Left-Click to fire"
 horizontal_alignment = 1
 vertical_alignment = 1

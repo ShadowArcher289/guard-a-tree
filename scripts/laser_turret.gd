@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var location: String = "ground"; ## stores location (ground, wall-left, wall-right, or ceiling)
+@onready var locked_weapon: Node2D = $LockedWeapon
 
 @onready var turret: AnimatedSprite2D = $Turret
 @onready var laser_ball: Sprite2D = $Turret/LaserBall
@@ -42,6 +43,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton && event.pressed: # listens for mouse click
 		if event.button_index == MOUSE_BUTTON_LEFT && (current_state == State.AIMING):
 			change_state(State.FIRE);
+		elif event.button_index == MOUSE_BUTTON_MIDDLE && (current_state == State.READY) && !locked_weapon.is_visible_in_tree(): # if MIDDLE-click all turrets begin aiming
+			change_state(State.AIMING);
 
 func _process(delta: float) -> void:	
 	if !laser_beam.is_visible_in_tree(): # don't deal damage if the laser is not showing.
@@ -99,12 +102,12 @@ func fire_laser() -> void: # fire laser script
 
 func camera_shake() -> void: # shakes the camera
 	var camera = get_tree().get_root().get_node("Game").get_child(0); # get the camera node (using very sloppy code)
-	var ogCameraPos = camera.position;
+	var ogCameraPos = camera.global_position;
 	for i in 8: # move the camera 8 times to make it look like it's shaking.
 		camera.position += Vector2(randi_range(-10, 10), randi_range(-10, 10));
 		await get_tree().create_timer(0.1).timeout;
 		camera.position = ogCameraPos; # set camera to the origional position
-	camera.position = ogCameraPos;
+	camera.global_position = ogCameraPos;
 	
 
 func hide_laser() -> void: # hide the laser

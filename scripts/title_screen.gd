@@ -9,6 +9,7 @@ extends Node2D
 @onready var rainbow_seed: Sprite2D = $RainbowSeed
 
 func _ready() -> void:
+	get_tree().paused = false;
 	seed.hide();
 	rainbow_seed.hide();
 

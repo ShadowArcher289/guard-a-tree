@@ -204,7 +204,7 @@ rotation = 0.692896
 texture = ExtResource("17_ssvqc")
 
 [node name="Ground" parent="." instance=ExtResource("17_rysoc")]
-position = Vector2(581, 633)
+position = Vector2(581, 618)
 
 [node name="Clouds" type="Node" parent="."]
 
@@ -233,29 +233,31 @@ texture = ExtResource("2_1kice")
 [node name="Turrets" type="Node" parent="Weapons"]
 
 [node name="LaserTurret" parent="Weapons/Turrets" instance=ExtResource("19_264po")]
-position = Vector2(763, 624)
+position = Vector2(763, 609)
 
 [node name="LaserTurret2" parent="Weapons/Turrets" instance=ExtResource("19_264po")]
+z_index = 2
 position = Vector2(964, 155)
 location = "ceiling"
 
 [node name="LaserTurret3" parent="Weapons/Turrets" instance=ExtResource("19_264po")]
-position = Vector2(384, 624)
+position = Vector2(384, 609)
 
 [node name="LaserTurret4" parent="Weapons/Turrets" instance=ExtResource("19_264po")]
+z_index = 2
 position = Vector2(222, 108)
 location = "ceiling"
 
 [node name="FLIES" type="Node" parent="Weapons"]
 
 [node name="FliesMachine" parent="Weapons/FLIES" instance=ExtResource("16_ca42v")]
-position = Vector2(187, 624)
+position = Vector2(187, 609)
 
 [node name="FliesMachine2" parent="Weapons/FLIES" instance=ExtResource("16_ca42v")]
-position = Vector2(996, 624)
+position = Vector2(996, 609)
 
 [node name="Boot" parent="Weapons" instance=ExtResource("18_264po")]
-z_index = 1
+z_index = 3
 position = Vector2(1715, -176)
 
 [node name="TermiteSpawner1" parent="." instance=ExtResource("18_ssvqc")]
@@ -321,7 +323,7 @@ offset_bottom = 65.0
 text = "Reset"
 
 [node name="TreeSpawner" parent="." instance=ExtResource("18_ssvqc")]
-position = Vector2(581, 618)
+position = Vector2(581, 603)
 spawnerType = "tree"
 
 [node name="TermiteSpawnTimer" type="Timer" parent="."]
@@ -348,9 +350,9 @@ vertical_alignment = 1
 
 [node name="TreeNameLabel" type="Label" parent="."]
 offset_left = 532.0
-offset_top = 613.0
+offset_top = 598.0
 offset_right = 630.0
-offset_bottom = 648.0
+offset_bottom = 633.0
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
@@ -409,10 +411,10 @@ offset_bottom = 91.0
 text = "Continue"
 
 [node name="WaterCan" parent="." instance=ExtResource("18_1kice")]
-offset_left = 425.0
-offset_top = 510.0
-offset_right = 553.0
-offset_bottom = 638.0
+offset_left = 224.0
+offset_top = 497.0
+offset_right = 352.0
+offset_bottom = 625.0
 
 [connection signal="toggled" from="CanvasLayer/ToggleKitbookButton" to="." method="_on_toggle_kitbook_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]
