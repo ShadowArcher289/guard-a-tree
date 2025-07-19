@@ -115,7 +115,7 @@ func tutorial(id : String):
 			kitbook.change_page_to(0);
 			toggle_kitbook_button.button_pressed = true;
 			await toggle_kitbook_button.toggled;
-			for i in 20: # spawn 20 termites
+			for i in 15: # spawn 20 termites
 				var spawn = randi_range(1, 2);
 				if spawn == 1:
 					termite_spawner_1.spawn();
@@ -129,7 +129,7 @@ func tutorial(id : String):
 			kitbook.change_page_to(1);
 			toggle_kitbook_button.button_pressed = true;
 			await toggle_kitbook_button.toggled;
-			Globals.player_leaf_count += 5; # some leaves to ensure it can be unlocked
+			Globals.player_leaf_count += 10; # some leaves to ensure it can be unlocked
 			await Globals.weaponUnlocked;
 			kitbook.change_page_to(2);
 			toggle_kitbook_button.button_pressed = true;
