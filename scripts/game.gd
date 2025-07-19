@@ -129,7 +129,7 @@ func tutorial(id : String):
 			kitbook.change_page_to(1);
 			toggle_kitbook_button.button_pressed = true;
 			await toggle_kitbook_button.toggled;
-			Globals.player_leaf_count += 10; # some leaves to ensure it can be unlocked
+			Globals.player_leaf_count += 20; # some leaves to ensure it can be unlocked
 			await Globals.weaponUnlocked;
 			kitbook.change_page_to(2);
 			toggle_kitbook_button.button_pressed = true;
