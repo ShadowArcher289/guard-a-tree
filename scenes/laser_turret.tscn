@@ -77,7 +77,7 @@ offset_left = -28.0
 offset_top = -67.0
 offset_right = 27.0
 offset_bottom = -15.0
-button_mask = 2
+button_mask = 3
 flat = true
 metadata/_edit_use_anchors_ = true
 

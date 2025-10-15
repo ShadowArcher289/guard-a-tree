@@ -44,11 +44,12 @@ func _ready() -> void:
 	end_of_tutorial_card.hide();
 	reset_button.hide();
 	
-	if Globals.game_mode == "tutorial": 	#start animations and different game modes
+	if Globals.game_mode == "tutorial": 	# start animations and different game modes
 		seed.texture = BASICSEEDTEXTURE;
 		animation_player.play("Start_Tutorial");
 		await animation_player.animation_finished;
 		await get_tree().create_timer(0.5).timeout;
+		Globals.ogCameraPosition = camera_2d.global_position; # set the base camera position
 		tree_spawner.spawn();
 		hp_bar.show();
 		termite_spawner_1.spawn();
@@ -63,6 +64,7 @@ func _ready() -> void:
 		animation_player.play("Start_Endless");
 		await animation_player.animation_finished;
 		await get_tree().create_timer(0.5).timeout;
+		Globals.ogCameraPosition = camera_2d.global_position; # set the base camera position
 		tree_spawner.spawn();
 		hp_bar.show();
 		termite_spawner_1.spawn();
@@ -98,6 +100,7 @@ func set_tree_name() -> void: # prompts the player to set a name for the tree
 	get_tree().paused = false;
 	tree_name_label.text = Globals.treeName;
 	treeNameSet.emit();
+
 
 func end_of_tutorial() -> void:
 	get_tree().paused = true;

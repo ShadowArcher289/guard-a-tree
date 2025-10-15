@@ -349,6 +349,7 @@ text = "32"
 vertical_alignment = 1
 
 [node name="TreeNameLabel" type="Label" parent="."]
+z_index = 1
 offset_left = 532.0
 offset_top = 598.0
 offset_right = 630.0
@@ -411,9 +412,9 @@ offset_bottom = 91.0
 text = "Continue"
 
 [node name="WaterCan" parent="." instance=ExtResource("18_1kice")]
-offset_left = 224.0
+offset_left = 1.5258789e-05
 offset_top = 497.0
-offset_right = 352.0
+offset_right = 128.00002
 offset_bottom = 625.0
 
 [connection signal="toggled" from="CanvasLayer/ToggleKitbookButton" to="." method="_on_toggle_kitbook_button_toggled"]

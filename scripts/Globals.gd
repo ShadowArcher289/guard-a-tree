@@ -4,6 +4,7 @@ var treeName = "Name" # the beautiful name the player gave the tree.
 
 #Game
 const GRAVITY = 9.8;
+var ogCameraPosition;
 var game_mode : String = "tutorial" # the default game mode is tutorial
 var enemyCount : int = 0; # holds the current number of enemies in the game.
 signal weaponUnlocked;

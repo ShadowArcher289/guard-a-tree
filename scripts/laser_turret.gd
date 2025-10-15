@@ -102,12 +102,11 @@ func fire_laser() -> void: # fire laser script
 
 func camera_shake() -> void: # shakes the camera
 	var camera = get_tree().get_root().get_node("Game").get_child(0); # get the camera node (using very sloppy code)
-	var ogCameraPos = camera.global_position;
 	for i in 8: # move the camera 8 times to make it look like it's shaking.
 		camera.position += Vector2(randi_range(-10, 10), randi_range(-10, 10));
 		await get_tree().create_timer(0.1).timeout;
-		camera.position = ogCameraPos; # set camera to the origional position
-	camera.global_position = ogCameraPos;
+		camera.global_position = Globals.ogCameraPosition; # set camera to the origional position
+	camera.global_position = Globals.ogCameraPosition;
 	
 
 func hide_laser() -> void: # hide the laser
