@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_MIDDLE && (current_state == State.READY) && !locked_weapon.is_visible_in_tree(): # if MIDDLE-click all turrets begin aiming
 			change_state(State.AIMING);
 
-func _process(delta: float) -> void:	
+func _process(_delta: float) -> void:	
 	if !laser_beam.is_visible_in_tree(): # don't deal damage if the laser is not showing.
 		hurtbox.monitoring = false;
 	else:

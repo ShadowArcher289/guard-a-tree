@@ -116,7 +116,7 @@ func spawn_bullet(velo : float) -> void:
 	SoundManager.bullet_fire.play();
 	game.add_child.call_deferred(bullet);
 
-func move(delta : float) -> void: # , targetPosition : Vector2
+func move(_delta : float) -> void: # , targetPosition : Vector2
 	#if !movementTween.is_valid(): # re-creates tween if it's invalid.
 	#	movementTween.kill();
 	#	movementTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT_IN);

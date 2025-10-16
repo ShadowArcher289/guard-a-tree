@@ -3,7 +3,7 @@ extends Control
 func _ready() -> void:
 	self.hide();
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.is_visible_in_tree() && !get_tree().paused: # pause the game if it's not already
 		get_tree().paused = true;
 

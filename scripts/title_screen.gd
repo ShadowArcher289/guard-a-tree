@@ -5,18 +5,18 @@ extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-@onready var seed: Sprite2D = $Seed
+@onready var tutorial_seed: Sprite2D = $Seed
 @onready var rainbow_seed: Sprite2D = $RainbowSeed
 
 func _ready() -> void:
 	get_tree().paused = false;
-	seed.hide();
+	tutorial_seed.hide();
 	rainbow_seed.hide();
 
 func _on_tutorial_button_pressed() -> void:
 	Globals.game_mode = "tutorial";
 	tutorial_button.hide();
-	seed.show();
+	tutorial_seed.show();
 	animation_player.play("Transition_Tutorial");
 	await animation_player.animation_finished;
 	TransitionManager.change_scene_to("res://scenes/game.tscn", "Fade_To_Black");

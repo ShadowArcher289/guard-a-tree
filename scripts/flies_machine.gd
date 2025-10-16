@@ -29,7 +29,7 @@ var flySpawnLocation : Vector2;
 func _ready() -> void:
 	spawn_timer.wait_time = spawn_cooldown;
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !locked_weapon.is_visible_in_tree(): # do not run code if weapon is locked
 		fly_ray_1.force_raycast_update()
 		fly_ray_2.force_raycast_update()

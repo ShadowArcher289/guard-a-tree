@@ -11,7 +11,7 @@ func _ready() -> void:
 	button.focus_mode = Control.FOCUS_NONE;
 	leaf_count_label.text = str(price);
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if global_rotation_degrees != 0:
 		global_rotation_degrees = 0;
 		position.y = -96;

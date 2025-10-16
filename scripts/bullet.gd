@@ -4,7 +4,7 @@ var velo = Globals.BULLETVELOCITY;
 const ATK = Globals.BULLETDMG;
 
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 		velocity = Vector2(velo, randf_range(-10,10)); # random vertical velocity for spread
 		move_and_slide();
 

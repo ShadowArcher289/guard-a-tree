@@ -2,12 +2,11 @@ extends Node2D
 
 signal treeNameSet;
 signal tutorialCompleted;
-@onready var kitbook_button_sound: AudioStreamPlayer = $CanvasLayer/KitbookButtonSound
 @onready var reset_button: Button = $CanvasLayer/ResetButton
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var seed: Sprite2D = $Seed
+@onready var tutorial_seed: Sprite2D = $Seed
 @onready var game_over: Control = $CanvasLayer/GameOver
 
 const BASICSEEDTEXTURE = preload("res://sprites/Seed.png");
@@ -45,7 +44,7 @@ func _ready() -> void:
 	reset_button.hide();
 	
 	if Globals.game_mode == "tutorial": 	# start animations and different game modes
-		seed.texture = BASICSEEDTEXTURE;
+		tutorial_seed.texture = BASICSEEDTEXTURE;
 		animation_player.play("Start_Tutorial");
 		await animation_player.animation_finished;
 		await get_tree().create_timer(0.5).timeout;
@@ -60,7 +59,7 @@ func _ready() -> void:
 		await get_tree().create_timer(3).timeout;
 		tutorial("stomp");
 	elif Globals.game_mode == "endless":
-		seed.texture = RAINBOWSEEDTEXTURE;
+		tutorial_seed.texture = RAINBOWSEEDTEXTURE;
 		animation_player.play("Start_Endless");
 		await animation_player.animation_finished;
 		await get_tree().create_timer(0.5).timeout;
@@ -80,7 +79,7 @@ func _ready() -> void:
 	#termi_copter_spawner_1.spawn();
 	#termi_copter_spawner_2.spawn();
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	hp_bar.value = Globals.currHp; # Temporary HP display.
 	leaf_count_label.text = str(Globals.player_leaf_count);
 	

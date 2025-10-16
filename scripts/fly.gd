@@ -24,7 +24,7 @@ func _ready() -> void:
 	if !is_in_group("fly"): # adds newly spawned fly to the fly group
 		self.add_to_group("fly");
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if position.x < 576: # change direction based on where the enemy is spawned.
 		rayRotationDirection = 1;
 	elif position.x > 576:

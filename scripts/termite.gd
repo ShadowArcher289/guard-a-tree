@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 	velocity.y -= -Globals.GRAVITY;
 	
 
-func move(delta: float) -> void:
+func move(_delta: float) -> void:
 	velocity.x = -directionX * speed; # horizontal movement
 	animated_sprite_2d.play("move");
 	
