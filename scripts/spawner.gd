@@ -5,6 +5,7 @@ extends Node2D
 
 const TERMITE = preload("res://scenes/termite.tscn");
 const TERMI_COPTER = preload("res://scenes/termi_copter.tscn");
+const BUFF_MITE = preload("uid://dajewst7hoseu"); # path to BuffMite, uid from new Godot 4.5 feature
 const TREE = preload("res://scenes/tree.tscn");
 
 
@@ -22,6 +23,14 @@ func spawn() -> void:
 		"termi_copter":
 			#print_debug("Summoned termi_copter")
 			entity = TERMI_COPTER.instantiate();
+			entity.show();
+			entity.velocity = Vector2(0, 0);
+			entity.position = self.position;
+			entity.z_index += 1;
+			game.add_child.call_deferred(entity); # adds the enity to game
+		"buff_mite":
+			#print_debug("Summoned buff_mite")
+			entity = BUFF_MITE.instantiate();
 			entity.show();
 			entity.velocity = Vector2(0, 0);
 			entity.position = self.position;

@@ -274,6 +274,14 @@ spawnerType = "termi_copter"
 position = Vector2(1300, 190)
 spawnerType = "termi_copter"
 
+[node name="BuffMiteSpawner1" parent="." instance=ExtResource("18_ssvqc")]
+position = Vector2(-139, 544)
+spawnerType = "buff_mite"
+
+[node name="BuffMiteSpawner2" parent="." instance=ExtResource("18_ssvqc")]
+position = Vector2(1297, 570)
+spawnerType = "buff_mite"
+
 [node name="HpBar" type="TextureProgressBar" parent="."]
 z_index = 5
 offset_left = 133.0
@@ -330,6 +338,9 @@ spawnerType = "tree"
 one_shot = true
 
 [node name="TermiCopterSpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BuffMiteSpawnTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Leaves" type="Node" parent="."]

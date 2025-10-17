@@ -14,6 +14,7 @@ const RAINBOWSEEDTEXTURE = preload("res://sprites/RainbowSeed.png");
 
 @onready var termite_spawn_timer: Timer = $TermiteSpawnTimer
 @onready var termi_copter_spawn_timer: Timer = $TermiCopterSpawnTimer
+@onready var buff_mite_spawn_timer: Timer = $BuffMiteSpawnTimer
 
 @onready var hp_bar: TextureProgressBar = $HpBar
 @onready var leaf_count_label: Label = $Leaves/LeafCountLabel
@@ -25,6 +26,8 @@ const RAINBOWSEEDTEXTURE = preload("res://sprites/RainbowSeed.png");
 @onready var termite_spawner_2: Node2D = $TermiteSpawner2
 @onready var termi_copter_spawner_1: Node2D = $TermiCopterSpawner1
 @onready var termi_copter_spawner_2: Node2D = $TermiCopterSpawner2
+@onready var buff_mite_spawner_1: Node2D = $BuffMiteSpawner1
+@onready var buff_mite_spawner_2: Node2D = $BuffMiteSpawner2
 @onready var tree_spawner: Node2D = $TreeSpawner
 
 @onready var set_tree_name_card: Sprite2D = $SetTreeNameCard
@@ -175,7 +178,7 @@ func tutorial(id : String):
 			end_of_tutorial(); # end of tutorial card
 			await tutorialCompleted;
 			while Globals.currHp >= 0: # infenitaley spawn a mix of enemies
-				var spawn = randi_range(1, 4);
+				var spawn = randi_range(1, 6);
 				if spawn == 1:
 					termite_spawner_1.spawn();
 				elif spawn == 2:
@@ -188,10 +191,16 @@ func tutorial(id : String):
 					termi_copter_spawner_2.position.y += randf_range(-50, 200);
 					termi_copter_spawner_2.spawn();
 					termi_copter_spawner_2.position.y = 190;
+				elif spawn == 5:
+					buff_mite_spawner_1.spawn();
+				elif spawn == 6:
+					buff_mite_spawner_2.spawn();
 				termi_copter_spawn_timer.start(randf_range(0.2, 2));
 				if !termite_spawn_timer.is_stopped():
 					await termite_spawn_timer.timeout;
 				elif !termi_copter_spawn_timer.is_stopped():
+					await termi_copter_spawn_timer.timeout;
+				elif !buff_mite_spawn_timer.is_stopped():
 					await termi_copter_spawn_timer.timeout;
 
 func run_endless() -> void: # spawn enemies for endless mode
@@ -217,17 +226,19 @@ func run_endless() -> void: # spawn enemies for endless mode
 	
 				termi_copter_spawn_timer.start(randf_range(1, 4))
 				await termi_copter_spawn_timer.timeout;
-	for i in 20: # spawn some termites to at least get a laser
-		var spawn = randi_range(1, 2);
+	for i in 20: # spawn some termites and some buffmites to at least get a laser
+		var spawn = randi_range(1, 3);
 		if spawn == 1:
 			termite_spawner_1.spawn();
-		else:
+		elif spawn == 2:
 			termite_spawner_2.spawn();
+		elif spawn == 3:
+			buff_mite_spawner_1.spawn();
 		termite_spawn_timer.start(randf_range(0.2, 0.5))
 		await termite_spawn_timer.timeout;
 	#await Globals.enemiesCleared;
 	while Globals.currHp >= 0: # infenitaley spawn enemies
-		var spawn = randi_range(1, 6);
+		var spawn = randi_range(1, 8);
 		if spawn == 1 || spawn == 3:
 			termite_spawner_1.spawn();
 			termite_spawn_timer.start(randf_range(0, 1));
@@ -244,10 +255,18 @@ func run_endless() -> void: # spawn enemies for endless mode
 			termi_copter_spawner_2.spawn();
 			termi_copter_spawner_2.position.y = 190;
 			termi_copter_spawn_timer.start(randf_range(1, 3));
+		if spawn == 7:
+			buff_mite_spawner_1.spawn();
+			buff_mite_spawn_timer.start(randf_range(2, 3));
+		elif spawn == 8:
+			buff_mite_spawner_2.spawn();
+			buff_mite_spawn_timer.start(randf_range(2, 3));
 		if !termite_spawn_timer.is_stopped():
 			await termite_spawn_timer.timeout;
 		elif !termi_copter_spawn_timer.is_stopped():
 			await termi_copter_spawn_timer.timeout;
+		elif !buff_mite_spawn_timer.is_stopped():
+			await buff_mite_spawn_timer.timeout;
 		print(Globals.currHp)
 	print("stopped")
 func reset():
