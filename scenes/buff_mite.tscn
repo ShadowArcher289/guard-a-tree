@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://dajewst7hoseu"]
+
+[ext_resource type="Texture2D" uid="uid://lavyycbq266k" path="res://sprites/BuffMiteA1.png" id="1_uqcsq"]
+[ext_resource type="Texture2D" uid="uid://b7bg144wyl6vr" path="res://sprites/BuffMiteW1.png" id="1_yaktu"]
+[ext_resource type="Texture2D" uid="uid://cqghqoig6flla" path="res://sprites/BuffMiteA2.png" id="2_focng"]
+[ext_resource type="Texture2D" uid="uid://dyk7oup677ury" path="res://sprites/BuffMiteW2.png" id="2_u4xg5"]
+[ext_resource type="Texture2D" uid="uid://bat06sfp1y0p" path="res://sprites/BuffMiteW3.png" id="3_cl5qo"]
+[ext_resource type="Texture2D" uid="uid://csnunqy3eogrb" path="res://sprites/BuffMiteA3.png" id="3_gr17c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqcsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uqcsq")
+}, {
+"duration": 6.0,
+"texture": ExtResource("2_focng")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_gr17c")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yaktu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_u4xg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cl5qo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_u4xg5")
+}],
+"loop": false,
+"name": &"move",
+"speed": 10.0
+}]
+
+[node name="BuffMite" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uqcsq")
+animation = &"attack"
+frame_progress = 0.4891532
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+
+[node name="AtkTimer" type="Timer" parent="."]
