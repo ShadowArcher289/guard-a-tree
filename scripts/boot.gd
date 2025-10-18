@@ -13,7 +13,7 @@ var clickBuffer : int = 0;
 var stompTween = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN_OUT);
 
 func _input(event: InputEvent) -> void:
-	print("stomp cooldown:" + str(stomp_cooldown_timer.is_stopped()));
+	#print("stomp cooldown:" + str(stomp_cooldown_timer.is_stopped()));
 	if event is InputEventMouseButton && event.pressed: # listens for mouse click
 		if event.button_index == MOUSE_BUTTON_LEFT && !Globals.LaserAiming: # if left-click and a laser isn't being aimed.
 			if stomp_cooldown_timer.is_stopped(): # run if the cooldown timer is stopped

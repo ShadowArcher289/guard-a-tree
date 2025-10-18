@@ -261,12 +261,12 @@ func run_endless() -> void: # spawn enemies for endless mode
 		elif spawn == 8:
 			buff_mite_spawner_2.spawn();
 			buff_mite_spawn_timer.start(randf_range(2, 3));
-		if !termite_spawn_timer.is_stopped():
-			await termite_spawn_timer.timeout;
+		if !buff_mite_spawn_timer.is_stopped():
+			await buff_mite_spawn_timer.timeout;
 		elif !termi_copter_spawn_timer.is_stopped():
 			await termi_copter_spawn_timer.timeout;
-		elif !buff_mite_spawn_timer.is_stopped():
-			await buff_mite_spawn_timer.timeout;
+		elif !termite_spawn_timer.is_stopped():
+			await termite_spawn_timer.timeout;
 		print(Globals.currHp)
 	print("stopped")
 func reset():

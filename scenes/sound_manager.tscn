@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dp87xe6eho0r8" path="res://audio/sand foley 4.wav" id="9_k1d7a"]
 [ext_resource type="AudioStream" uid="uid://bjcpn1mkugry2" path="res://audio/hurt.wav" id="9_wwv6j"]
 [ext_resource type="AudioStream" uid="uid://bogwfh5jget1g" path="res://audio/coin.wav" id="11_55or6"]
-[ext_resource type="AudioStream" uid="uid://4ulkebdsivif" path="res://audio/roblox-death-sound-sound-effect-(hd)-made-with-Voicemod.mp3" id="12_55or6"]
+[ext_resource type="AudioStream" uid="uid://bpuoee0eevtmg" path="res://audio/RobloxOofSound-Shortened.wav" id="12_55or6"]
 
 [node name="SoundManager" type="Node2D"]
 process_mode = 3
@@ -58,4 +58,5 @@ volume_db = -10.0
 
 [node name="BuffMiteDown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_55or6")
-pitch_scale = 0.2
+volume_db = -8.0
+pitch_scale = 0.9

@@ -50,10 +50,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gr17c"]
-radius = 46.0
+radius = 35.0
 height = 136.0
 
 [node name="BuffMite" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_focng")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
